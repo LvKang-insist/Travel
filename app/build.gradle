@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        relase {
+            storeFile file('F:\\Android\\Project\\ImitateQQMusic\\app\\key.jks')
+            storePassword '123456789'
+            keyAlias = 'key0'
+            keyPassword '123456789'
+        }
+    }
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.admin.frame"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    api project(path: ':work')
+
+    //在浏览器中输入 chrome://inspect 找到需要调试的对象
+    api 'com.facebook.stetho:stetho:1.5.0'
+
+    //解决方法数超过 64k 的问题
+    api 'com.android.support:multidex:1.0.3'
+}
