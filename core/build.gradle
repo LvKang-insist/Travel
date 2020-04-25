@@ -143,4 +143,12 @@ dependencies {
     //Log 工具
     api 'com.elvishew:xlog:1.6.1'
 
+    //AgentWeb
+    api 'com.just.agentweb:agentweb:4.1.3' // (必选)
+    //AgentWeb 进度条
+    api 'com.github.Justson:CoolIndicator:v1.0.0'
+
+    //ViewPager 指示器，替代 TabLayout
+    api 'com.github.hackware1993:MagicIndicator:1.6.0'
+
 }

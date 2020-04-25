@@ -1,43 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dele_more_layout"
     android:layout_width="match_parent"
-    android:id="@+id/dele_more_swipeRefresh"
     android:layout_height="match_parent">
-    <androidx.core.widget.NestedScrollView
+
+
+    <!-- AppBarLayout：一个垂直方向的 LinearLayout，内部做了很多滚动事件的封装-->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="#999999"
+        app:elevation="0dp">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <!-- 作用于 Toolbar 基础之上的布局，之鞥作为 AppbarLayout的子布局使用-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            app:layout_scrollFlags="scroll">
 
             <include layout="@layout/delegate_toolbar" />
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/dele_more_viewapager"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_gravity="center"
-                android:clipToPadding="false"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp" />
-
-            <include layout="@layout/delegate_more_icon" />
-
-            <include layout="@layout/item_more_" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/more_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/more_square_tabLayout"
+            android:layout_width="match_parent"
+            android:background="#ff0000"
+            android:layout_height="50dp" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/more_square_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

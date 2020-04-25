@@ -15,13 +15,30 @@ import com.bigkoo.convenientbanner.holder.Holder;
  * @Time: 2019/4/21 15:15
  * @description: ${DESCRIPTION}
  */
-public class LauncherHolderCreator implements CBViewHolderCreator{
+public class LauncherHolderCreator implements CBViewHolderCreator {
+
+    boolean isCir = false;
+
+    public LauncherHolderCreator() {
+    }
+
+    /**
+     * 是否开启圆角
+     *
+     * @param isCir
+     */
+    public  LauncherHolderCreator(boolean isCir) {
+        this.isCir = isCir;
+    }
+
     /**
      * 加载 布局
      */
     @Override
     public Holder createHolder(View itemView) {
-        return new LauncherHolder(itemView);
+        LauncherHolder holder = new LauncherHolder(itemView);
+        holder.setCir(isCir);
+        return holder;
     }
 
     @Override

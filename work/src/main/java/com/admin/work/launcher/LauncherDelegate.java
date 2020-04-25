@@ -6,12 +6,11 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.admin.core.ui.launcher.ScrollLauncherTag;
-import com.admin.core.util.storage.LattePreference;
 import com.admin.core.util.time.BaseTimeTask;
 import com.admin.core.util.time.ITimeListener;
 import com.admin.work.R;
 import com.admin.work.R2;
+import com.admin.work.main.EcBottomDelegate;
 
 import java.text.MessageFormat;
 import java.util.Timer;
@@ -70,12 +69,8 @@ public class LauncherDelegate extends BaseLauncherDelegate implements ITimeListe
      * 判断是否显示 滑动启动页
      */
     private void checkIsShowScroll() {
-        if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
-            getSupportDelegate().startWithPop(new LauncherScrollDelegate());
-        } else {
-            //判断是否登录 及后面的逻辑
-            checkSignIn();
-        }
+//        getSupportDelegate().startWithPop(new LauncherScrollDelegate());
+        getSupportDelegate().startWithPop(new EcBottomDelegate());
     }
 
     @Override

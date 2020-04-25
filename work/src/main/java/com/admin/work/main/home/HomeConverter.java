@@ -1,61 +1,55 @@
 package com.admin.work.main.home;
 
-import com.admin.core.app.AccountManager;
-import com.admin.core.app.MusicManager;
 import com.admin.core.ui.recycler.DataConverter;
+import com.admin.core.ui.recycler.MultipleFields;
 import com.admin.core.ui.recycler.MultipleItemEntity;
+import com.admin.work.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 
 public class HomeConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
-        /*
-         * 登陆信息
-         */
-        MultipleItemEntity account = MultipleItemEntity.builder()
-                .setItemType(HomeItemType.HOME_ACCOUNT)
-                .setField(HomeItemFields.NAME, AccountManager.getSignInNumber())
-                .setField(HomeItemFields.TEXT1, "活动中心")
-                .setField(HomeItemFields.TEXT2, "会员中心")
-                .setField(HomeItemFields.Url_PHOTO, "")
-                .build();
-        ENTITLES.add(account);
 
-        /*
-         * icon
-         */
-        int icon_love = MusicManager.getMusicSize(MusicManager.SourceCount.LOVE_COUNT);
-        int icon_native = MusicManager.getMusicSize(MusicManager.SourceCount.NATIVE_COUNT);
-        int icon_recently = MusicManager.getMusicSize(MusicManager.SourceCount.RECENTLY_COUNT);
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("喜欢", String.valueOf(icon_love));
-        map.put("最近", String.valueOf(icon_recently));
-        map.put("本地", String.valueOf(icon_native));
-        map.put("已购", "");
-        map.put("关注", "");
-        MultipleItemEntity icon = MultipleItemEntity.builder()
-                .setItemType(HomeItemType.HOME_ICON)
-                .setField(HomeItemFields.MAP, map)
-                .build();
-        ENTITLES.add(icon);
+        List<Integer> banners = new ArrayList<>();
+        banners.add(R.drawable.banner_1);
+        banners.add(R.drawable.banner_2);
+        banners.add(R.drawable.banner_3);
+        banners.add(R.drawable.banner_4);
+        banners.add(R.drawable.banner_5);
 
-        /*
-         * 智能分类
-         */
-        MultipleItemEntity sort = MultipleItemEntity.builder()
-                .setItemType(HomeItemType.HOME_SORT)
+        MultipleItemEntity banner = MultipleItemEntity.builder()
+                .setItemType(HomeItemType.HOME_BANNER)
+                .setField(MultipleFields.SPAN_SIZE, 2)
+                .setField(MultipleFields.BANNERS, banners)
                 .build();
-        ENTITLES.add(sort);
-        /*
-         * TabLayout 歌单
-         */
-        MultipleItemEntity tab = MultipleItemEntity.builder()
-                .setItemType(HomeItemType.HOME_TABLAYOUT)
+
+        ENTITLES.add(banner);
+
+
+        MultipleItemEntity HOME_LINE = MultipleItemEntity.builder()
+                .setItemType(HomeItemType.HOME_LINE)
+                .setField(MultipleFields.SPAN_SIZE, 2)
                 .build();
-        ENTITLES.add(tab);
+        ENTITLES.add(HOME_LINE);
+
+
+        String json = getJsonData();
+        HomeBean bean = new Gson().fromJson(json, HomeBean.class);
+        if (bean.getCode() == 200) {
+            for (int i = 0; i < bean.getNewslist().size(); i++) {
+                MultipleItemEntity list = MultipleItemEntity.builder()
+                        .setItemType(HomeItemType.HOME_LIST)
+                        .setField(MultipleFields.SPAN_SIZE, 1)
+                        .setField(HomeItemFields.BEAN, bean.getNewslist().get(i))
+                        .build();
+                ENTITLES.add(list);
+            }
+        }
+
+
         return ENTITLES;
     }
 }

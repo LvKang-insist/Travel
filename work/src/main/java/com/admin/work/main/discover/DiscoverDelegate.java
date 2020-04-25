@@ -3,13 +3,10 @@ package com.admin.work.main.discover;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -17,22 +14,15 @@ import androidx.viewpager.widget.ViewPager;
 import com.admin.core.deleggate.bottom.BottomItemDelegate;
 import com.admin.core.net.rx.RxRequest;
 import com.admin.core.ui.view.ForbidSlideViewPager;
-import com.admin.core.util.callback.CallBackType;
-import com.admin.core.util.callback.CallbackManager;
-import com.admin.core.util.callback.IGlobalCallback;
 import com.admin.core.util.value.Resource;
 import com.admin.work.R;
 import com.admin.work.R2;
-
-import com.admin.work.main.home.search.SearchDelegate;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.WeakHashMap;
 
@@ -50,9 +40,7 @@ import butterknife.BindView;
 public class DiscoverDelegate extends BottomItemDelegate {
 
 
-    @BindView(R2.id.toolbar_textview)
-    AppCompatTextView mToolbar_Text = null;
-    @BindView(R2.id.toolbar_icon)
+
     AppCompatImageView mToolbar_Icon = null;
     @BindView(R2.id.discover_viewpager)
     ForbidSlideViewPager mViewpager = null;
@@ -60,8 +48,8 @@ public class DiscoverDelegate extends BottomItemDelegate {
     TabLayout mTabLayout = null;
     @BindView(R2.id.discover_viewpager_banner)
     ViewPager mViewPagerBanner = null;
-    @BindView(R2.id.et_search_view)
-    AppCompatEditText editText;
+//    @BindView(R2.id.et_search_view)
+//    AppCompatEditText editText;
     private PageBannerAdapter adapter;
     private PagerAdapter pagerAdapter;
 
@@ -126,8 +114,7 @@ public class DiscoverDelegate extends BottomItemDelegate {
     }
 
     private void setToolbar() {
-        mToolbar_Text.setText("发现");
-        editText.setOnFocusChangeListener((view, b) -> {
+        /*editText.setOnFocusChangeListener((view, b) -> {
             if (b) {
                 //加载BOTTOM动画
                 IGlobalCallback callBack = CallbackManager.getInstance().getCallBack(CallBackType.BOTTOM);
@@ -137,6 +124,6 @@ public class DiscoverDelegate extends BottomItemDelegate {
                 //搜索页面
                 getParentDelegate().getSupportDelegate().start(new SearchDelegate());
             }
-        });
+        });*/
     }
 }

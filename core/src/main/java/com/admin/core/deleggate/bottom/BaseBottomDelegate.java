@@ -1,21 +1,10 @@
 package com.admin.core.deleggate.bottom;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import android.view.ViewStub;
-import android.view.ViewTreeObserver;
-import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -29,8 +18,6 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import com.admin.core.R;
 import com.admin.core.R2;
 import com.admin.core.deleggate.LatteDelegate;
-import com.admin.core.util.callback.CallBackType;
-import com.admin.core.util.callback.CallbackManager;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -91,6 +78,8 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     @BindView(R2.id.bottom_view)
     View mView = null;
 
+    private int[] iconTrue = {R.drawable.icon_home_true, R.drawable.icon_mdd_true, R.drawable.icon_service_true, R.drawable.icon_my_true};
+    private int[] iconfalse = {R.drawable.icon_home_false, R.drawable.icon_mdd_false, R.drawable.icon_service_false, R.drawable.icon_my_false};
 
 
     /**
@@ -140,7 +129,6 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        //加载音乐控制
 
         final int size = ITEMS.size();
         for (int i = 0; i < size; i++) {
@@ -159,11 +147,11 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             final BottomTabBean bean = TAB_BEANS.get(i);
 
             //初始化 tab 数据
-//            itemIcon.setText(bean.getIcon());
+            itemIcon.setImageResource(iconfalse[i]);
             itemTitle.setText(bean.getTitle());
             //判断是否是 当前显示
             if (i == mIndexDelegate) {
-//                itemIcon.setTextColor(mClickedColor);
+                itemIcon.setImageResource(iconTrue[i]);
                 itemTitle.setTextColor(mClickedColor);
             }
         }
@@ -186,8 +174,8 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         final int count = mBottomBar.getChildCount();
         for (int i = 0; i < count; i++) {
             final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
-//            final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
-//            itemIcon.setTextColor(Color.GRAY);
+            final AppCompatImageView itemIcon = (AppCompatImageView) item.getChildAt(0);
+            itemIcon.setImageResource(iconfalse[i]);
             final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
             itemTitle.setTextColor(Color.GRAY);
         }
@@ -198,8 +186,8 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         final int tag = (int) v.getTag();
         resetColor();
         final RelativeLayout item = (RelativeLayout) v;
-//        final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
-//        itemIcon.setTextColor(mClickedColor);
+        final AppCompatImageView itemIcon = (AppCompatImageView) item.getChildAt(0);
+        itemIcon.setImageResource(iconTrue[tag]);
         final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
 

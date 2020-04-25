@@ -3,4 +3,5 @@
     android:id="@+id/banner_recycler_item"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:orientation="vertical"/>
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"/>

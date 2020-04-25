@@ -1,49 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/delegate_toolbar"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/activity_search_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+            android:id="@+id/activity_search_layout"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_weight="5"
+            android:background="@drawable/toolbar_edit"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/toolbar_textview"
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_weight="2"
-
-                android:textSize="20sp" />
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:src="@drawable/ic_search" />
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_search_view"
+                android:id="@+id/activity_search_edit"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_weight="7"
-                android:background="@drawable/toolbar_edit"
-                android:cursorVisible="false"
-                android:gravity="center"
-                android:hint="@string/seek" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_icon"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-
-                android:layout_weight="2"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="搜索目的地/景区"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.appcompat.widget.Toolbar>
-</LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_search_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -9,8 +9,10 @@
     <!--橘黄色-->
     <color name="app_main">@android:color/holo_orange_dark</color>
 
-    <!--音乐绿-->
+  
     <color name="app_music_green">#1CD69B</color>
+
+    <color name="icon">#03A9F5</color>
 
     <!-- 灰色 ，用来设置 btn 的边框刚好-->
     <color name="app_btn">#D1D1D1</color>
