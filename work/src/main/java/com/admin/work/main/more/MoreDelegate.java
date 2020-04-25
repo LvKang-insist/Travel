@@ -1,5 +1,6 @@
 package com.admin.work.main.more;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.admin.core.deleggate.bottom.BottomItemDelegate;
 import com.admin.work.R;
 import com.admin.work.R2;
+import com.admin.work.main.home.search.SearchDelegate;
+import com.gyf.immersionbar.ImmersionBar;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -33,7 +36,7 @@ public class MoreDelegate extends BottomItemDelegate {
 
     @BindView(R2.id.more_recyclerview)
     RecyclerView mRecycler;
-    private MoreRecyclerAdapter adapter;
+    MoreRecyclerAdapter adapter;
 
     @BindView(R2.id.more_square_tabLayout)
     MagicIndicator frag_square_tabLayout;
@@ -51,14 +54,17 @@ public class MoreDelegate extends BottomItemDelegate {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         //沉浸式状态栏
-//        ImmersionBar.with(this)
-////                .statusBarDarkFont(true)
-////                .titleBar(rootView.findViewById(R.id.dele_more_layout))
-////                .init();
+        ImmersionBar.with(this)
+                .statusBarDarkFont(true)
+                .init();
         initRecycler();
+
+        rootView.findViewById(R.id.activity_search_toolbar).setOnClickListener(v -> getParentDelegate().getSupportDelegate().start(new SearchDelegate()));
+        rootView.findViewById(R.id.activity_search_edit).setOnClickListener(v -> getParentDelegate().getSupportDelegate().start(new SearchDelegate()));
     }
 
     private void initRecycler() {
@@ -119,8 +125,8 @@ public class MoreDelegate extends BottomItemDelegate {
         });
 
 
-        frag_square_tabLayout.setNavigator(commonNavigator); ;
-        frag_square_vp.setAdapter(new SquVpTabAdapter(getChildFragmentManager(),getLifecycle(),data));
+        frag_square_tabLayout.setNavigator(commonNavigator);
+        frag_square_vp.setAdapter(new SquVpTabAdapter(getChildFragmentManager(), getLifecycle(), data));
         ViewPage2Helpter.bind(frag_square_tabLayout, frag_square_vp);
     }
 

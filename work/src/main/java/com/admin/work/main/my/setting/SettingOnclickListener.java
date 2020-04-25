@@ -1,25 +1,20 @@
-package com.admin.work.main.home.setting;
+package com.admin.work.main.my.setting;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import com.admin.core.app.AccountManager;
 import com.admin.core.app.IUserChecker;
-import com.admin.core.app.Latte;
-import com.admin.work.R;
-import com.admin.work.main.home.list.ListBean;
-import com.admin.work.sign.SignInDelegate;
+
+import com.admin.core.util.storage.PreferenceUtilsKt;
+import com.admin.work.main.my.list.ListBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
+import com.hjq.toast.ToastUtils;
 
 public class SettingOnclickListener extends SimpleClickListener {
     private Context context;
@@ -45,14 +40,14 @@ public class SettingOnclickListener extends SimpleClickListener {
                         AccountManager.checkAccount(new IUserChecker() {
                             @Override
                             public void onSignIn(String SignState, String SignNumber) {
-                                Log.e(TAG, "onSignIn: "+SignNumber+"-----"+SignState );
-                                AccountManager.setSignState(false);
-                                delegate.getParentDelegate().getSupportDelegate().pop();
-                                delegate.getParentDelegate().getSupportDelegate().replaceFragment(new SignInDelegate(), false);
+
                             }
 
                             @Override
                             public void onNoSignIn() {
+                                ToastUtils.show("退出登录成功");
+                                PreferenceUtilsKt.putUserPhoto(null);
+                                PreferenceUtilsKt.putUserName(null);
                             }
                         });
 

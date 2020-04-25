@@ -9,10 +9,10 @@ import com.admin.core.deleggate.bottom.BaseBottomDelegate;
 import com.admin.core.deleggate.bottom.BottomItemDelegate;
 import com.admin.core.deleggate.bottom.BottomTabBean;
 import com.admin.core.deleggate.bottom.ItemBuilder;
-import com.admin.work.main.MyDelegate.MyDelegate;
 import com.admin.work.main.discover.DiscoverDelegate;
 import com.admin.work.main.home.HomeDelegate;
 import com.admin.work.main.more.MoreDelegate;
+import com.admin.work.main.my.MyDelegate;
 
 import java.util.LinkedHashMap;
 

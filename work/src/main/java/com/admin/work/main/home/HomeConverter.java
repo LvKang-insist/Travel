@@ -7,11 +7,13 @@ import com.admin.work.R;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HomeConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
+        ENTITLES.clear();
 
         List<Integer> banners = new ArrayList<>();
         banners.add(R.drawable.banner_1);
@@ -37,16 +39,25 @@ public class HomeConverter extends DataConverter {
 
 
         String json = getJsonData();
-        HomeBean bean = new Gson().fromJson(json, HomeBean.class);
-        if (bean.getCode() == 200) {
-            for (int i = 0; i < bean.getNewslist().size(); i++) {
-                MultipleItemEntity list = MultipleItemEntity.builder()
-                        .setItemType(HomeItemType.HOME_LIST)
-                        .setField(MultipleFields.SPAN_SIZE, 1)
-                        .setField(HomeItemFields.BEAN, bean.getNewslist().get(i))
-                        .build();
-                ENTITLES.add(list);
+        if (json != null) {
+            HomeBean bean = new Gson().fromJson(json, HomeBean.class);
+            if (bean.getCode() == 200) {
+                for (int i = 0; i < bean.getNewslist().size(); i++) {
+                    MultipleItemEntity list = MultipleItemEntity.builder()
+                            .setItemType(HomeItemType.HOME_LIST)
+                            .setField(MultipleFields.SPAN_SIZE, 1)
+                            .setField(HomeItemFields.BEAN, bean.getNewslist().get(i))
+                            .build();
+                    ENTITLES.add(list);
+                }
             }
+        } else {
+            MultipleItemEntity list = MultipleItemEntity.builder()
+                    .setItemType(HomeItemType.HOME_LIST)
+                    .setField(MultipleFields.SPAN_SIZE, 1)
+                    .setField(HomeItemFields.BEAN, Collections.emptyList())
+                    .build();
+            ENTITLES.add(list);
         }
 
 

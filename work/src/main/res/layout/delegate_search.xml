@@ -22,19 +22,19 @@
                 android:layout_weight="0.6"
                 android:gravity="center"
                 android:paddingRight="10dp"
-                android:text="{music-break}"
+                android:src="@drawable/ic_back"
                 android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_search_view"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="@dimen/dp_30"
                 android:layout_gravity="center"
                 android:layout_weight="4"
-               android:background="@drawable/toolbar_edit"
+                android:textSize="13sp"
+                android:background="@drawable/toolbar_edit"
                 android:gravity="center_vertical"
-                android:hint="搜索"
-                android:paddingLeft="20dp" />
+                android:paddingLeft="15dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_top_search"
@@ -60,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:gravity="center"
-        android:textColor="@color/app_main"
+        android:text="清空历史记录"
+        android:textColor="@color/icon"
         android:textSize="18sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>

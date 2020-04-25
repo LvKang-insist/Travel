@@ -4,19 +4,22 @@ import com.admin.core.ui.recycler.DataConverter;
 import com.admin.core.ui.recycler.MultipleFields;
 import com.admin.core.ui.recycler.MultipleItemEntity;
 import com.admin.core.util.storage.LattePreference;
+import com.admin.work.main.home.HomeBean;
 import com.admin.work.main.home.HomeItemFields;
 import com.admin.work.main.home.HomeItemType;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SearchDataConverter extends DataConverter {
 
     enum MODE {
+        /**
+         * Type
+         */
         SEARCH_HISTORY,
-        SEARCH_RESULT,
         SEARCH_SONG
     }
 
@@ -59,27 +62,32 @@ public class SearchDataConverter extends DataConverter {
                     }
                 }
                 return ENTITLES;
-            case SEARCH_RESULT:
-                return parseData(HomeItemType.HOME_SEARCH_RESULT);
             case SEARCH_SONG:
-                return parseData(HomeItemType.HOME_NETWORK_SONG);
+                return parseData(HomeItemType.HOME_NETWORK_SEARCH);
+            default:
         }
         return null;
     }
 
     private ArrayList<MultipleItemEntity> parseData(int type) {
-        JSONObject json = JSON.parseObject(getJsonData());
-        int code = json.getInteger("code");
-        if (code == 200) {
-            JSONArray data = JSON.parseArray(json.getString("data"));
-            for (int i = 0; i < data.size(); i++) {
-                NetWorkQQSong song = data.getJSONObject(i).toJavaObject(NetWorkQQSong.class);
-                final MultipleItemEntity entity = MultipleItemEntity.builder()
-                        .setItemType(type)
-                        .setField(HomeItemFields.NETWORK_SONG, song)
-                        .build();
-                ENTITLES.add(entity);
+        String json = getJsonData();
+        if (json != null) {
+            HomeBean bean = new Gson().fromJson(json, HomeBean.class);
+            if (bean.getCode() == 200) {
+                for (int i = 0; i < bean.getNewslist().size(); i++) {
+                    MultipleItemEntity list = MultipleItemEntity.builder()
+                            .setItemType(type)
+                            .setField(HomeItemFields.BEAN, bean.getNewslist().get(i))
+                            .build();
+                    ENTITLES.add(list);
+                }
             }
+        } else {
+            MultipleItemEntity list = MultipleItemEntity.builder()
+                    .setItemType(type)
+                    .setField(HomeItemFields.BEAN, Collections.emptyList())
+                    .build();
+            ENTITLES.add(list);
         }
         return ENTITLES;
     }

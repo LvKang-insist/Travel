@@ -1,4 +1,4 @@
-package com.admin.work.main.home.setting;
+package com.admin.work.main.my.setting;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +12,9 @@ import com.admin.core.deleggate.LatteDelegate;
 import com.admin.core.util.dimen.SetToolBar;
 import com.admin.work.R;
 import com.admin.work.R2;
-import com.admin.work.main.home.list.ListAdapter;
-import com.admin.work.main.home.list.ListBean;
-import com.admin.work.main.home.list.ListItemType;
+import com.admin.work.main.my.list.ListAdapter;
+import com.admin.work.main.my.list.ListBean;
+import com.admin.work.main.my.list.ListItemType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +38,7 @@ public class SettingDelegate extends LatteDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         SetToolBar.setToolBar(mToolbar);
+
     }
 
     @Override
@@ -60,7 +61,7 @@ public class SettingDelegate extends LatteDelegate {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.addOnItemTouchListener(new SettingOnclickListener(getContext(),this));
+        mRecyclerView.addOnItemTouchListener(new SettingOnclickListener(getContext(), this));
     }
 
     @Override

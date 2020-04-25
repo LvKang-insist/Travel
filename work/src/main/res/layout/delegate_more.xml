@@ -3,29 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dele_more_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <!-- AppBarLayout：一个垂直方向的 LinearLayout，内部做了很多滚动事件的封装-->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#999999"
+        android:layout_height="wrap_content"
+        android:background="@color/icon"
+        android:paddingTop="20dp"
         app:elevation="0dp">
 
         <!-- 作用于 Toolbar 基础之上的布局，之鞥作为 AppbarLayout的子布局使用-->
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll">
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-            <include layout="@layout/delegate_toolbar" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/more_recyclerview"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10" />
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/delegate_toolbar" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/more_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="#ffffff" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -33,8 +44,8 @@
         <net.lucode.hackware.magicindicator.MagicIndicator
             android:id="@+id/more_square_tabLayout"
             android:layout_width="match_parent"
-            android:background="#ff0000"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:background="#ffffff" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

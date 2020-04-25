@@ -10,7 +10,7 @@ public class HomeItemType {
     public static final int HOME_TAB_LIST = 14;
     public static final int HOME_SEARCH = 18;
     public static final int HOME_SEARCH_RESULT = 19;
-    public static final int HOME_NETWORK_SONG = 20;
+    public static final int HOME_NETWORK_SEARCH = 20;
 
 
 }

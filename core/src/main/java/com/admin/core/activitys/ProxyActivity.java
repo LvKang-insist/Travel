@@ -2,6 +2,7 @@ package com.admin.core.activitys;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,6 +11,8 @@ import androidx.appcompat.widget.ContentFrameLayout;
 
 import com.admin.core.R;
 import com.admin.core.deleggate.LatteDelegate;
+import com.admin.core.util.callback.CallbackManager;
+import com.hjq.toast.ToastUtils;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
@@ -42,19 +45,20 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
 
     /**
      * 初始化 视图
+     *
      * @param savedInstanceState 保存的数据
      */
     @SuppressLint("RestrictedApi")
     private void initContainer(@Nullable Bundle savedInstanceState) {
-         final ContentFrameLayout container = new ContentFrameLayout(this);
+        final ContentFrameLayout container = new ContentFrameLayout(this);
         //设置这个视图的Id
         container.setId(R.id.delegate_container);
         setContentView(container);
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             //SupportActivity 独有的一个方法
             //加载根Fragment 即Activity的第一个Fragment ，或者Fragment内的第一个Fragment
             //即 加载碎片
-            DELEGATE.loadRootFragment(R.id.delegate_container,setRootDelegate());
+            DELEGATE.loadRootFragment(R.id.delegate_container, setRootDelegate());
         }
     }
 
@@ -71,6 +75,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     public void post(Runnable runnable) {
 
     }
+
 
     @Override
     public SupportActivityDelegate getSupportDelegate() {

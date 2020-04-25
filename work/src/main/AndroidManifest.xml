@@ -42,9 +42,12 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--    qq    -->
 
-        <activity android:name=".web.AgentWebActivity"
+        <activity
+            android:name=".web.AgentWebActivity"
             android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"/>
+            android:hardwareAccelerated="true" />
+
+        <activity android:name=".sign.SignInDelegate" />
 
     </application>
 

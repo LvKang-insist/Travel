@@ -56,6 +56,7 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                         .setOnItemClickListener(this)
                         //设置 循环 轮播
                         .setCanLoop(false);
+                mConvenientBanner.startTurning(3000);
                 break;
             case HomeItemType.HOME_LINE:
                 LinearLayoutCompat layout1 = holder.itemView.findViewById(R.id.item_lishi_layout);

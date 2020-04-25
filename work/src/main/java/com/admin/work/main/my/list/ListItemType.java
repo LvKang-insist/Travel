@@ -1,4 +1,4 @@
-package com.admin.work.main.home.list;
+package com.admin.work.main.my.list;
 
 public class ListItemType {
     public static final int PER_ITEM = 51;

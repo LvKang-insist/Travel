@@ -18,7 +18,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:textColor="#000000"
-            android:textSize="17sp"
+            android:textSize="15sp"
             tools:text="热门推荐" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -38,5 +38,11 @@
             tools:ignore="HardcodedText" />
     </RelativeLayout>
 
-    <include layout="@layout/item_multiple_banner" />
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/banner_recycler_item"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginBottom="10dp"/>
 </LinearLayout>

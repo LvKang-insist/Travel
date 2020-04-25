@@ -39,7 +39,7 @@ import butterknife.BindView;
  */
 public class DiscoverDelegate extends BottomItemDelegate {
 
-
+//http://www.haoservice.com/docs/50
 
     AppCompatImageView mToolbar_Icon = null;
     @BindView(R2.id.discover_viewpager)
@@ -114,16 +114,6 @@ public class DiscoverDelegate extends BottomItemDelegate {
     }
 
     private void setToolbar() {
-        /*editText.setOnFocusChangeListener((view, b) -> {
-            if (b) {
-                //加载BOTTOM动画
-                IGlobalCallback callBack = CallbackManager.getInstance().getCallBack(CallBackType.BOTTOM);
-                if (callBack != null) {
-                    callBack.executeCallBack(null);
-                }
-                //搜索页面
-                getParentDelegate().getSupportDelegate().start(new SearchDelegate());
-            }
-        });*/
+
     }
 }

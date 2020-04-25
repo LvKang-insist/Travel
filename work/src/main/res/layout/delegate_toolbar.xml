@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -16,9 +16,9 @@
             android:id="@+id/activity_search_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
-            android:layout_marginLeft="@dimen/dp_10"
             android:layout_weight="5"
             android:background="@drawable/toolbar_edit"
             android:gravity="center_vertical"
@@ -31,12 +31,13 @@
                 android:padding="15dp"
                 android:src="@drawable/ic_search" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/activity_search_edit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:background="@null"
+                android:enabled="true"
                 android:gravity="center_vertical"
                 android:hint="搜索目的地/景区"
                 android:textColor="@color/black"
@@ -54,5 +55,7 @@
             android:textSize="15sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

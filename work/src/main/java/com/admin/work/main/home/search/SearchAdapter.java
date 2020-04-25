@@ -1,24 +1,26 @@
 package com.admin.work.main.home.search;
 
-import android.util.Log;
-import android.widget.Toast;
+import android.content.Intent;
+import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.admin.core.app.Latte;
-import com.admin.core.app.MusicManager;
 import com.admin.core.net.rx.RxRequest;
 import com.admin.core.ui.recycler.MultipleFields;
 import com.admin.core.ui.recycler.MultipleItemEntity;
 import com.admin.core.ui.recycler.MultipleRecyclerAdapter;
 import com.admin.core.ui.recycler.MultipleViewHolder;
-import com.admin.core.util.value.Resource;
 import com.admin.work.R;
+import com.admin.work.main.home.HomeBean;
 import com.admin.work.main.home.HomeItemFields;
 import com.admin.work.main.home.HomeItemType;
+import com.admin.work.web.AgentWebActivity;
 import com.bumptech.glide.Glide;
+import com.elvishew.xlog.XLog;
 
 import java.util.List;
+import java.util.WeakHashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -29,8 +31,7 @@ public class SearchAdapter extends MultipleRecyclerAdapter {
         super(data);
         this.delegate = searchDelegate;
         addItemType(HomeItemType.HOME_SEARCH, R.layout.item_search);
-        addItemType(HomeItemType.HOME_SEARCH_RESULT, R.layout.item_search_result);
-        addItemType(HomeItemType.HOME_NETWORK_SONG, R.layout.item_search_song);
+        addItemType(HomeItemType.HOME_NETWORK_SEARCH, R.layout.item_network_search);
     }
 
     @Override
@@ -42,59 +43,44 @@ public class SearchAdapter extends MultipleRecyclerAdapter {
                 final String history = entity.getField(MultipleFields.TEXT);
                 tvSearchItem.setText(history);
                 tvSearchItem.setOnClickListener((view -> {
-                    String url = Resource.getString(R.string.music_url);
-                    RxRequest.onGetRx(delegate.getContext(), url,
-                            MusicManager.MusicApi.instance.getParam(history, "kugou"), (flag, result) -> {
-                                if (flag) {
-                                    SearchDataConverter converter = new SearchDataConverter();
-                                    converter.setJsonData(result);
-                                    setNewData(converter.convert(SearchDataConverter.MODE.SEARCH_SONG));
-                                }
-                            });
+                    request(tvSearchItem.getText().toString());
                 }));
                 break;
-            case HomeItemType.HOME_SEARCH_RESULT:
-                final AppCompatTextView tvSearchResult = holder.getView(R.id.tv_search_result);
-                final NetWorkQQSong song = entity.getField(HomeItemFields.NETWORK_SONG);
-                final String name = song.getName() + "   - " + song.getAuthor();
-                tvSearchResult.setText(name);
-                holder.getView(R.id.item_search_result).setOnClickListener((view -> {
-                    String url = Resource.getString(R.string.music_url);
-                    //保存搜索的名字
-                    delegate.saveItem(name);
-                    RxRequest.onGetRx(delegate.getContext(), url,
-                            MusicManager.MusicApi.instance.getParam(song.getName(), "kugou"), (flag, result) -> {
-                                if (flag) {
-                                    SearchDataConverter converter = new SearchDataConverter();
-                                    converter.setJsonData(result);
-                                    setNewData(converter.convert(SearchDataConverter.MODE.SEARCH_SONG));
-                                }
-                            });
-                }));
-                break;
-            case HomeItemType.HOME_NETWORK_SONG:
-                final NetWorkQQSong workSong = entity.getField(HomeItemFields.NETWORK_SONG);
+            case HomeItemType.HOME_NETWORK_SEARCH:
+                final HomeBean.NewslistBean bean = entity.getField(HomeItemFields.BEAN);
                 CircleImageView image = holder.getView(R.id.item_search_image);
                 Glide.with(Latte.getApplication())
-                        .load(workSong.getPic())
+                        .load(bean.getPicUrl())
                         .into(image);
-                holder.setText(R.id.item_search_song_name, workSong.getName());
-                holder.setText(R.id.item_song_search_author, workSong.getAuthor());
-                //播放
-                holder.getView(R.id.item_search_song).setOnClickListener((view -> {
-                    Toast.makeText(delegate.getContext(), "开始播放："+workSong.getName(), Toast.LENGTH_SHORT).show();
-                }));
-                //视频
-                holder.getView(R.id.item_song_search_video).setOnClickListener((v -> {
-
-                }));
-                //更多
-                holder.getView(R.id.item_song_search_more).setOnClickListener((v -> {
-
-                }));
+                AppCompatTextView text = holder.getView(R.id.item_search_name);
+                text.setText(bean.getTitle());
+                holder.getView(R.id.item_search_layout).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(holder.itemView.getContext(), AgentWebActivity.class);
+                        intent.putExtra("link", bean.getUrl());
+                        holder.itemView.getContext().startActivity(intent);
+                    }
+                });
                 break;
             default:
                 break;
         }
+    }
+
+    void request(String text) {
+        WeakHashMap<String, Object> map = new WeakHashMap<>();
+        map.put("key", "75b91370009876ca424a865e0007d935");
+        map.put("num", 15);
+        map.put("word", text);
+        delegate.saveItem(text);
+        RxRequest.onGetRx(delegate.getContext(), "http://api.tianapi.com/travel/index", map, (flag, result) -> {
+            if (flag) {
+                XLog.json(result);
+                SearchDataConverter converter = new SearchDataConverter();
+                converter.setJsonData(result);
+                setNewData(converter.convert(SearchDataConverter.MODE.SEARCH_SONG));
+            }
+        });
     }
 }

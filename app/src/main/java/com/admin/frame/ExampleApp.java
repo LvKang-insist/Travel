@@ -30,7 +30,6 @@ public class ExampleApp extends Application {
 
 
         Latte.init(this)
-
                 .withHost("http://192.168.2.140:80/Frame_Api/")
                 .configure();
         //log 和 Tost 工具

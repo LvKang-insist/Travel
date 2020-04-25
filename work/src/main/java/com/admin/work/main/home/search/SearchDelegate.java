@@ -50,8 +50,11 @@ public class SearchDelegate extends LatteDelegate {
 
     @OnClick(R2.id.tv_top_search)
     void onClickSearch() {
-        final String searchItemText = mSearchEdit.getText().toString();
-        saveItem(searchItemText);
+        String name = mSearchEdit.getText().toString().trim();
+        if (!name.isEmpty() && !name.equals("")) {
+            adapter.request(name);
+            saveItem(name);
+        }
     }
 
     @OnClick(R2.id.icon_top_search_back)
@@ -79,37 +82,20 @@ public class SearchDelegate extends LatteDelegate {
                     KeyEvent.ACTION_DOWN == keyEvent.getAction())) {
                 String name = mSearchEdit.getText().toString().trim();
                 if (!name.isEmpty() && !name.equals("")) {
-                    request(name, SearchDataConverter.MODE.SEARCH_SONG);
+                    adapter.request(name);
                     saveItem(name);
                 }
                 return true;
             }
             return true;
         });
-        //监听输入变化
-        mSearchEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String name = charSequence.toString();
-                if (!name.isEmpty() && !name.equals("")) {
-                    request(name, SearchDataConverter.MODE.SEARCH_RESULT);
-                }
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
     }
 
-    private void request(String name,  SearchDataConverter.MODE searchResult) {
+    private void request(String name, SearchDataConverter.MODE searchResult) {
         WeakHashMap<String, Object> param = new MusicManager.MusicApi().
                 getInstance().getParam(name, "qq");
 
-        RxRequest.onGetRx( getContext(),Resource.getString(R.string.music_url), param, (flag, result) -> {
+        RxRequest.onGetRx(getContext(), Resource.getString(R.string.music_url), param, (flag, result) -> {
             if (flag) {
                 SearchDataConverter converter = new SearchDataConverter();
                 converter.setJsonData(result);
@@ -126,7 +112,7 @@ public class SearchDelegate extends LatteDelegate {
 
         final List<MultipleItemEntity> data =
                 new SearchDataConverter().convert(SearchDataConverter.MODE.SEARCH_HISTORY);
-        adapter = new SearchAdapter(data,this);
+        adapter = new SearchAdapter(data, this);
         mRecyclerView.setAdapter(adapter);
 
         mClear.setOnClickListener(v -> {
@@ -148,7 +134,7 @@ public class SearchDelegate extends LatteDelegate {
                 history = JSON.parseObject(historyStr, ArrayList.class);
                 //如果搜索历史中有，则 return
                 for (int i = 0; i < history.size(); i++) {
-                    if (history.get(i).equals(item)){
+                    if (history.get(i).equals(item)) {
                         return;
                     }
                 }
