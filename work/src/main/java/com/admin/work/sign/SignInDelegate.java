@@ -1,12 +1,8 @@
 package com.admin.work.sign;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,13 +23,6 @@ import com.tencent.tauth.UiError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.WeakHashMap;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Copyright (C)
@@ -131,16 +120,13 @@ public class SignInDelegate extends AppCompatActivity implements IUiListener {
         try {
             object.put("name", nickname);
             object.put("phone", figureurl2);
-            RxRequest.onPostRx(this, "http://192.168.43.80/Travel\\account\\SignUpAccount.php", object.toString(), new RxRequest.OnRxReqeustListener() {
+            RxRequest.onPostRx(this, "http://192.168.43.80/Travel/account/SignUpAccount.php", object.toString(), new RxRequest.OnRxReqeustListener() {
                 @SuppressLint("ApplySharedPref")
                 @Override
                 public void onNext(boolean flag, String result) {
                     if (flag) {
-                        XLog.e("--------------------" + nickname + "0000" + figureurl2);
-
                         PreferenceUtilsKt.putUserName(nickname);
                         PreferenceUtilsKt.putUserPhoto(figureurl2);
-
                         finish();
                     } else {
                         ToastUtils.show("网络错误");

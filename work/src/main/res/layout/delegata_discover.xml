@@ -1,73 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/frag_agent_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/frag_agent_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="15dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/frag_agent_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/frag_agent_share"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:src="@drawable/ic_share" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/frag_agent_linear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F9F9F9">
+            android:layout_height="match_parent" />
 
-            <!--可折叠式标题栏 ，不能独立存在，只能作为 AppBarLayout 的直接子布局来使用-->
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar_discover"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:statusBarScrim="@android:color/transparent">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp">
-
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/discover_viewpager_banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_gravity="center"
-                        android:clipToPadding="false"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp" />
-
-                    <!--<com.google.android.material.circularreveal.CircularRevealFrameLayout-->
-                    <!--android:id="@+id/frame_goods_info"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_below="@id/discover_viewpager_banner" />-->
-                </RelativeLayout>
-
-                <!--Toolbar 要放在下面-->
-                <include layout="@layout/delegate_toolbar" />
-
-                <!--如果将TabLayout 写在这里，将会透明-->
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/discover_tab_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                app:tabIndicatorFullWidth="false"
-                app:tabPaddingBottom="-15dp"
-                app:tabRippleColor="@android:color/transparent"
-                app:tabTextAppearance="@style/MyTabText" />
-        </com.google.android.material.appbar.AppBarLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
-        <com.admin.core.ui.view.ForbidSlideViewPager
-            android:id="@+id/discover_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

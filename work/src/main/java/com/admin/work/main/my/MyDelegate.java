@@ -2,7 +2,6 @@ package com.admin.work.main.my;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -14,6 +13,7 @@ import com.admin.core.util.storage.PreferenceUtilsKt;
 import com.admin.work.R;
 import com.admin.work.R2;
 import com.admin.work.main.my.setting.SettingDelegate;
+import com.admin.work.main.my.suggest.SuggestDelegate;
 import com.admin.work.sign.SignInDelegate;
 import com.bumptech.glide.Glide;
 
@@ -47,12 +47,8 @@ public class MyDelegate extends BottomItemDelegate {
         mAvatarImage.setOnClickListener(v -> startLogin());
         mTextName.setOnClickListener(v -> startLogin());
 
-        rootView.findViewById(R.id.delegate_my_setting).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getParentDelegate().getSupportDelegate().start(new SettingDelegate());
-            }
-        });
+        rootView.findViewById(R.id.delegate_my_suggest).setOnClickListener(v -> getParentDelegate().getSupportDelegate().start(new SuggestDelegate()));
+        rootView.findViewById(R.id.delegate_my_setting).setOnClickListener(v -> getParentDelegate().getSupportDelegate().start(new SettingDelegate()));
     }
 
 
@@ -79,7 +75,7 @@ public class MyDelegate extends BottomItemDelegate {
                     .into(mAvatarImage);
             mTextName.setText(name);
             return true;
-        }else {
+        } else {
             Glide.with(getContext())
                     .load(R.drawable.jilaizhi)
                     .into(mAvatarImage);

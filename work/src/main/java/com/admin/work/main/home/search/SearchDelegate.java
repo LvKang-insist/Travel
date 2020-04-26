@@ -1,9 +1,6 @@
 package com.admin.work.main.home.search;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -14,16 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.admin.core.app.MusicManager;
 import com.admin.core.deleggate.LatteDelegate;
-import com.admin.core.net.rx.RxRequest;
 import com.admin.core.ui.recycler.MultipleItemEntity;
-import com.admin.core.util.callback.CallBackType;
-import com.admin.core.util.callback.CallbackManager;
-import com.admin.core.util.callback.IGlobalCallback;
 import com.admin.core.util.dimen.SetToolBar;
 import com.admin.core.util.storage.LattePreference;
-import com.admin.core.util.value.Resource;
 import com.admin.work.R;
 import com.admin.work.R2;
 import com.alibaba.fastjson.JSON;
@@ -31,7 +22,6 @@ import com.blankj.utilcode.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -91,18 +81,6 @@ public class SearchDelegate extends LatteDelegate {
         });
     }
 
-    private void request(String name, SearchDataConverter.MODE searchResult) {
-        WeakHashMap<String, Object> param = new MusicManager.MusicApi().
-                getInstance().getParam(name, "qq");
-
-        RxRequest.onGetRx(getContext(), Resource.getString(R.string.music_url), param, (flag, result) -> {
-            if (flag) {
-                SearchDataConverter converter = new SearchDataConverter();
-                converter.setJsonData(result);
-                adapter.setNewData(converter.convert(searchResult));
-            }
-        });
-    }
 
     @Override
     public void onSupportVisible() {
@@ -147,13 +125,4 @@ public class SearchDelegate extends LatteDelegate {
         }
     }
 
-    @Override
-    public boolean onBackPressedSupport() {
-        IGlobalCallback callBack = CallbackManager.getInstance().getCallBack(CallBackType.BOTTOM);
-        if (callBack != null) {
-            callBack.executeCallBack(null);
-        }
-        getSupportDelegate().pop();
-        return true;
-    }
 }

@@ -7,7 +7,7 @@ import androidx.appcompat.app.ActionBar;
 
 import com.admin.core.activitys.ProxyActivity;
 import com.admin.core.deleggate.LatteDelegate;
-import com.admin.work.main.EcBottomDelegate;
+import com.admin.work.launcher.LauncherDelegate;
 import com.gyf.immersionbar.ImmersionBar;
 
 public class ExampleActivity extends ProxyActivity {
@@ -27,7 +27,7 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new EcBottomDelegate();
+        return new LauncherDelegate();
     }
 
 

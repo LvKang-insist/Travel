@@ -65,12 +65,10 @@ public class LauncherDelegate extends BaseLauncherDelegate implements ITimeListe
         initTimer();
     }
 
-    /**
-     * 判断是否显示 滑动启动页
-     */
+
     private void checkIsShowScroll() {
 //        getSupportDelegate().startWithPop(new LauncherScrollDelegate());
-        getSupportDelegate().startWithPop(new EcBottomDelegate());
+        getSupportDelegate().start(new EcBottomDelegate());
     }
 
     @Override

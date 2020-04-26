@@ -12,8 +12,6 @@ import androidx.annotation.RequiresApi;
 
 import com.admin.core.R;
 
-import kotlin.jvm.JvmStatic;
-
 public class ViewHelper {
 
 
@@ -26,7 +24,6 @@ public class ViewHelper {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("Recycle")
-    @JvmStatic
     public static void setViewOutLine(
             View view, AttributeSet attributeSet, int defStyleAttr, int defStyleRes) {
         TypedArray array = view.getContext().obtainStyledAttributes(
@@ -41,7 +38,6 @@ public class ViewHelper {
         setViewOutLine(view, radius, radiusSide);
     }
 
-    @JvmStatic
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setViewOutLine(View view, int radius, int radiusSide) {
         if (radius <= 0) {

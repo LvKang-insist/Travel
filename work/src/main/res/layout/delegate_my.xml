@@ -51,6 +51,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/delegate_my_suggest"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"

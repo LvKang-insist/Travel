@@ -6,9 +6,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.admin.core.ui.launcher.LauncherHolderCreator;
-import com.admin.core.ui.launcher.ScrollLauncherTag;
-import com.admin.core.util.storage.LattePreference;
 import com.admin.work.R;
+import com.admin.work.main.EcBottomDelegate;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 
@@ -65,9 +64,7 @@ public class LauncherScrollDelegate extends BaseLauncherDelegate implements OnIt
     public void onItemClick(int position) {
         //如果点击的是最后一个
         if (position == INTEGERS.size() - 1) {
-            LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
-            //检查的用户是否已经登录
-            checkSignIn();
+            getSupportDelegate().startWithPop(new EcBottomDelegate());
         }
     }
 }

@@ -4,17 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.admin.core.deleggate.LatteDelegate;
-import com.admin.core.util.dimen.SetToolBar;
 import com.admin.work.R;
 import com.admin.work.R2;
 import com.admin.work.main.my.list.ListAdapter;
 import com.admin.work.main.my.list.ListBean;
 import com.admin.work.main.my.list.ListItemType;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,7 @@ import butterknife.BindView;
 
 public class SettingDelegate extends LatteDelegate {
 
-    @BindView(R2.id.settings_toolbar)
-    Toolbar mToolbar = null;
+
     @BindView(R2.id.rv_settings)
     RecyclerView mRecyclerView = null;
 
@@ -37,8 +35,11 @@ public class SettingDelegate extends LatteDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        SetToolBar.setToolBar(mToolbar);
-
+        //沉浸式状态栏
+        ImmersionBar.with(this)
+                .statusBarDarkFont(true)
+                .titleBar(rootView.findViewById(R.id.setting_toolbar))
+                .init();
     }
 
     @Override

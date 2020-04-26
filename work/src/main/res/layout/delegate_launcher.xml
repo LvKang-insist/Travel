@@ -2,21 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/home">
+    android:background="#03A9F5">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/jilaizhi" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_launcher_time"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:background="@drawable/border_circle_time"
-        android:layout_marginRight="15sp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="15dp"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15sp"
+        android:background="@drawable/border_circle_time"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
 </RelativeLayout>
