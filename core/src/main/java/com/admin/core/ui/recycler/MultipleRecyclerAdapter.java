@@ -45,6 +45,7 @@ public class MultipleRecyclerAdapter extends
     public static MultipleRecyclerAdapter create(List<MultipleItemEntity> data) {
         return new MultipleRecyclerAdapter(data);
     }
+
     public static MultipleRecyclerAdapter create(DataConverter converter) {
         return new MultipleRecyclerAdapter(converter.convert());
     }
@@ -63,7 +64,8 @@ public class MultipleRecyclerAdapter extends
         //设置 宽度监听
         setSpanSizeLookup(this);
         //加载时打开动画
-        openLoadAnimation();
+//        openLoadAnimation();
+        closeLoadAnimation();
         //多次执行动画
         isFirstOnly(false);
     }
@@ -118,13 +120,13 @@ public class MultipleRecyclerAdapter extends
                         .dontAnimate()
                         .centerCrop()
                         .into((ImageView) holder.getView(R.id.img_single));
-                holder.setText(R.id.tv_multiple,text);
+                holder.setText(R.id.tv_multiple, text);
                 break;
             case ItemType.BANNER:
-                if (!mIsInitBanner){
+                if (!mIsInitBanner) {
                     bannerImages = entity.getField(MultipleFields.BANNERS);
                     final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
-                    BannerCreator.setDefault(convenientBanner,bannerImages,this);
+                    BannerCreator.setDefault(convenientBanner, bannerImages, this);
                     mIsInitBanner = true;
                 }
                 break;
@@ -132,6 +134,7 @@ public class MultipleRecyclerAdapter extends
                 break;
         }
     }
+
     /**
      * 设置宽度
      */

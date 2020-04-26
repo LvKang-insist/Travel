@@ -1,6 +1,7 @@
 package com.admin.work.main.home;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -8,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import com.admin.core.app.Latte;
 import com.admin.core.deleggate.LatteDelegate;
 import com.admin.core.ui.launcher.LauncherHolderCreator;
 import com.admin.core.ui.recycler.MultipleFields;
@@ -17,10 +19,15 @@ import com.admin.core.ui.recycler.MultipleViewHolder;
 import com.admin.core.ui.view.ViewHelper;
 import com.admin.core.util.callback.IGlobalCallback;
 import com.admin.work.R;
+import com.admin.work.main.home.list.ListDelegate;
 import com.admin.work.web.AgentWebActivity;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bumptech.glide.Glide;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 
@@ -65,12 +72,19 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                 LinearLayoutCompat layout4 = holder.itemView.findViewById(R.id.item_home_feiyi_layout);
                 Intent line_intent = new Intent(holder.itemView.getContext(), AgentWebActivity.class);
                 layout1.setOnClickListener(v -> {
-                    line_intent.putExtra("link", "https://baike.baidu.com/item/%E6%B2%B3%E5%8C%97%E5%8E%86%E5%8F%B2/2417072?fr=aladdin");
-                    holder.itemView.getContext().startActivity(line_intent);
+
+                    int[] image = {R.drawable.lishi_baoding, R.drawable.lishi_cangzhou, R.drawable.lishi_chengde,
+                            R.drawable.lishi_handan, R.drawable.lishi_hengshui, R.drawable.lishi_lagnfang,
+                            R.drawable.lishi_qignhaugndao, R.drawable.lishi_shijiazhuagn, R.drawable.lishi_tangshan,
+                            R.drawable.lishi_xingtai, R.drawable.lishi_zhangjiakou};
+                    String content = parseFile("home_lishi.json");
+                    mHomeDelegate.getParentDelegate().getSupportDelegate().start(new ListDelegate(content, image));
                 });
                 layout2.setOnClickListener(v -> {
-                    line_intent.putExtra("link", "http://ren.bytravel.cn/Celebrity/index111.html");
-                    holder.itemView.getContext().startActivity(line_intent);
+                    int[] image = {R.drawable.mingren_bianque, R.drawable.mingren_lidazhao, R.drawable.mingren_lianpo,
+                            R.drawable.mingren_weizheng, R.drawable.mingren_zhaoyun, R.drawable.mingren_zhuchongzhi};
+                    String content = parseFile("home_mingren.json");
+                    mHomeDelegate.getParentDelegate().getSupportDelegate().start(new ListDelegate(content, image));
                 });
                 layout3.setOnClickListener(v -> {
                     line_intent.putExtra("link", "https://baijiahao.baidu.com/s?id=1644897734657156190&wfr=spider&for=pc");
@@ -103,5 +117,36 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                 break;
             default:
         }
+
+    }
+
+    private String parseFile(String fileName) {
+        AssetManager assets = Latte.getApplication().getAssets();
+        InputStream is = null;
+        BufferedReader br = null;
+        StringBuilder builder = new StringBuilder();
+        try {
+            is = assets.open(fileName);
+            br = new BufferedReader(new InputStreamReader(is));
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                builder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
+        return builder.toString();
     }
 }
