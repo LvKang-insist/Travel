@@ -115,7 +115,7 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                     String text = entity.getField(MultipleFields.TEXT);
                     int iamgeId = entity.getField(MultipleFields.IMAGE_URL);
                     String json = null;
-                    if (text.equals("攻略")) {
+                    if ("攻略".equals(text)) {
                         json = parseFile("home_gonglue.json");
                     }
                     detail.setText(text);
@@ -123,7 +123,18 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                             .load(iamgeId)
                             .into(image);
                     String finalJson = json;
-                    holder.itemView.setOnClickListener(v -> mHomeDelegate.getParentDelegate().getSupportDelegate().start(new HomeStrategyDelegate(text, finalJson)));
+                    holder.itemView.setOnClickListener(v -> {
+                        if ("推荐".equals(text)) {
+                            int[] im = {R.drawable.tuijian_baishishan, R.drawable.tuijian_baiyaognding, R.drawable.tuijian_caoyuan,
+                                    R.drawable.tuijian_chegnde, R.drawable.tuijian_putuo, R.drawable.tuijian_qignhuangdao,
+                                    R.drawable.tuijian_saihan, R.drawable.tuijian_yuetuo, R.drawable.tuijian_zhangbei,
+                                    R.drawable.tuijin_zhengding};
+                            String content = parseFile("home_tuijian.json");
+                            mHomeDelegate.getParentDelegate().getSupportDelegate().start(new ListDelegate(content, im));
+                            return;
+                        }
+                        mHomeDelegate.getParentDelegate().getSupportDelegate().start(new HomeStrategyDelegate(text, finalJson));
+                    });
                     return;
                 }
                 HomeBean.NewslistBean bean = entity.getField(HomeItemFields.BEAN);

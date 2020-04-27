@@ -7,4 +7,5 @@ public enum MoreItemFields {
     TEXT,
     BANNER,
     LIST,
+    BEAN,
 }

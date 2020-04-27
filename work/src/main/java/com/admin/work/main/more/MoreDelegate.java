@@ -38,10 +38,6 @@ public class MoreDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         //沉浸式状态栏
-        ImmersionBar.with(this)
-                .titleBar(rootView.findViewById(R.id.activity_search_toolbar))
-                .statusBarDarkFont(true)
-                .init();
         initRecycler();
 
         rootView.findViewById(R.id.activity_search_toolbar).setOnClickListener(v -> getParentDelegate().getSupportDelegate().start(new SearchDelegate()));
@@ -54,8 +50,5 @@ public class MoreDelegate extends BottomItemDelegate {
         MoreRecyclerConverter converter = new MoreRecyclerConverter();
         adapter = new MoreRecyclerAdapter(converter.convert(), this);
         mRecycler.setAdapter(adapter);
-        mRecycler.setNestedScrollingEnabled(false);
-
-
     }
 }

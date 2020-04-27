@@ -3,20 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/icon">
+    android:background="@color/icon"
+    android:orientation="vertical">
 
 
-        <include
-            layout="@layout/delegate_toolbar" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp">
+        <include layout="@layout/delegate_toolbar" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/more_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp_10"
-        android:background="#ffffff" />
+        android:background="#EDEDED" />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 

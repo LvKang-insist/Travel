@@ -61,7 +61,7 @@ public class ListDelegate extends LatteDelegate {
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         ListConverter converter = new ListConverter(image);
         converter.setJsonData(json);
-        ListAdapter adapter = new ListAdapter(converter.convert(),this);
+        ListAdapter adapter = new ListAdapter(converter.convert(), this);
         recycler.setAdapter(adapter);
     }
 

@@ -1,27 +1,46 @@
 package com.admin.work.main.more;
 
+import android.content.res.AssetManager;
+import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.admin.core.app.Latte;
 import com.admin.core.deleggate.LatteDelegate;
 import com.admin.core.ui.launcher.LauncherHolderCreator;
+import com.admin.core.ui.recycler.MultipleFields;
 import com.admin.core.ui.recycler.MultipleItemEntity;
 import com.admin.core.ui.recycler.MultipleRecyclerAdapter;
 import com.admin.core.ui.recycler.MultipleViewHolder;
 import com.admin.work.R;
+import com.admin.work.main.more.list.MoreBean;
+import com.admin.work.main.more.list.MoreListDelegate;
 import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoreRecyclerAdapter extends MultipleRecyclerAdapter {
 
     LatteDelegate mDelegate;
+    List<MoreBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> contentlist;
 
     protected MoreRecyclerAdapter(List<MultipleItemEntity> data, LatteDelegate delegate) {
         super(data);
         this.mDelegate = delegate;
         addItemType(MoreItemType.MORE_TYPE_ONE, R.layout.item_more_type_one);
+
+        String content = parseFile("mudidi.json");
+        MoreBean moreBean = new Gson().fromJson(content, MoreBean.class);
+        contentlist = moreBean.getShowapi_res_body().getPagebean().getContentlist();
     }
 
     @Override
@@ -29,20 +48,74 @@ public class MoreRecyclerAdapter extends MultipleRecyclerAdapter {
         super.convert(holder, entity);
         switch (holder.getItemViewType()) {
             case MoreItemType.MORE_TYPE_ONE:
-                List<String> banner = entity.getField(MoreItemFields.BANNER);
-                ConvenientBanner mConvenientBanner = holder.itemView.findViewById(R.id.banner_recycler_item);
-                mConvenientBanner
-                        .setPages(new LauncherHolderCreator(true), banner)
-                        //添加 监听
-                        .setOnItemClickListener(this)
-                        //设置 循环 轮播
-                        .setCanLoop(false);
-
                 String text = entity.getField(MoreItemFields.TEXT);
+                int imageUrl = entity.getField(MultipleFields.IMAGE_URL);
+                AppCompatImageView image = holder.getView(R.id.item_more_image);
                 AppCompatTextView title = holder.itemView.findViewById(R.id.item_more_name);
                 title.setText(text);
+                Glide.with(mDelegate.getContext())
+                        .load(imageUrl)
+                        .into(image);
+
+                int tag = entity.getField(MultipleFields.TAG);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        List<MoreBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list = new ArrayList<>();
+                        if (tag == 0) {
+                            for (int i = 0; i < 10; i++) {
+                                list.add(contentlist.get(i));
+                            }
+                            mDelegate.getParentDelegate().getSupportDelegate().start(new MoreListDelegate(list, text));
+                        } else if (tag == 1) {
+                            for (int i = 10; i < 20; i++) {
+                                list.add(contentlist.get(i));
+                            }
+                            mDelegate.getParentDelegate().getSupportDelegate().start(new MoreListDelegate(list, text));
+                        } else {
+                            for (int i = 4; i >= 0; i--) {
+                                list.add(contentlist.get(i));
+                            }
+                            for (int i = 15; i < 20; i++) {
+                                list.add(contentlist.get(i));
+                            }
+                            mDelegate.getParentDelegate().getSupportDelegate().start(new MoreListDelegate(list, text));
+                        }
+                    }
+                });
             default:
         }
+    }
+
+    private String parseFile(String fileName) {
+        AssetManager assets = Latte.getApplication().getAssets();
+        InputStream is = null;
+        BufferedReader br = null;
+        StringBuilder builder = new StringBuilder();
+        try {
+            is = assets.open(fileName);
+            br = new BufferedReader(new InputStreamReader(is));
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                builder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
+        return builder.toString();
     }
 
 }

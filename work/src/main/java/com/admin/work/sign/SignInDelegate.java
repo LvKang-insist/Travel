@@ -69,7 +69,7 @@ public class SignInDelegate extends AppCompatActivity implements IUiListener {
             tencent.setAccessToken(accessToken, expiresIn);
             tencent.setOpenId(openId);
             QQToken qqToken = tencent.getQQToken();
-            getUserInfo(qqToken);
+            getUserInfo(qqToken, openId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -86,7 +86,7 @@ public class SignInDelegate extends AppCompatActivity implements IUiListener {
     }
 
 
-    private void getUserInfo(QQToken qqToken) {
+    private void getUserInfo(QQToken qqToken, String openId) {
         UserInfo userInfo = new UserInfo(Latte.getApplication(), qqToken);
         userInfo.getUserInfo(new IUiListener() {
             @Override
@@ -96,7 +96,7 @@ public class SignInDelegate extends AppCompatActivity implements IUiListener {
                 try {
                     String nickname = response.getString("nickname");
                     String figureurl2 = response.getString("figureurl_2");
-                    save(nickname, figureurl2);
+                    save(nickname, figureurl2, openId);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -115,15 +115,17 @@ public class SignInDelegate extends AppCompatActivity implements IUiListener {
 
     }
 
-    private void save(String nickname, String figureurl2) {
+    private void save(String nickname, String figureurl2, String openId) {
         JSONObject object = new JSONObject();
         try {
             object.put("name", nickname);
-            object.put("phone", figureurl2);
+            object.put("photo", figureurl2);
+            object.put("openId", openId);
             RxRequest.onPostRx(this, "http://192.168.43.80/Travel/account/SignUpAccount.php", object.toString(), new RxRequest.OnRxReqeustListener() {
                 @SuppressLint("ApplySharedPref")
                 @Override
                 public void onNext(boolean flag, String result) {
+                    XLog.e(result);
                     if (flag) {
                         PreferenceUtilsKt.putUserName(nickname);
                         PreferenceUtilsKt.putUserPhoto(figureurl2);
