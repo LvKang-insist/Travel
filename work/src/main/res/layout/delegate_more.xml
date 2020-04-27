@@ -1,60 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/icon">
 
 
-    <!-- AppBarLayout：一个垂直方向的 LinearLayout，内部做了很多滚动事件的封装-->
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/icon"
-        android:paddingTop="20dp"
-        app:elevation="0dp">
-
-        <!-- 作用于 Toolbar 基础之上的布局，之鞥作为 AppbarLayout的子布局使用-->
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll">
+        <include
+            layout="@layout/delegate_toolbar" />
 
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include
-                    layout="@layout/delegate_toolbar" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/more_recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:background="#ffffff" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        <net.lucode.hackware.magicindicator.MagicIndicator
-            android:id="@+id/more_square_tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#ffffff" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/more_square_vp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/more_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="#ffffff" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
 
 

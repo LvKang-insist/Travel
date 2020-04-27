@@ -39,12 +39,26 @@ public class HomeConverter extends DataConverter {
 
 
         String json = getJsonData();
+
+        String[] str = {"攻略", "推荐"};
+        int[] image = {R.drawable.gonglue, R.drawable.tuijian};
+        for (int i = 0; i < 2; i++) {
+            MultipleItemEntity list = MultipleItemEntity.builder()
+                    .setItemType(HomeItemType.HOME_LIST)
+                    .setField(MultipleFields.TAG, true)
+                    .setField(MultipleFields.SPAN_SIZE, 1)
+                    .setField(MultipleFields.TEXT, str[i])
+                    .setField(MultipleFields.IMAGE_URL, image[i])
+                    .build();
+            ENTITLES.add(list);
+        }
         if (json != null) {
             HomeBean bean = new Gson().fromJson(json, HomeBean.class);
             if (bean.getCode() == 200) {
                 for (int i = 0; i < bean.getNewslist().size(); i++) {
                     MultipleItemEntity list = MultipleItemEntity.builder()
                             .setItemType(HomeItemType.HOME_LIST)
+                            .setField(MultipleFields.TAG, false)
                             .setField(MultipleFields.SPAN_SIZE, 1)
                             .setField(HomeItemFields.BEAN, bean.getNewslist().get(i))
                             .build();
@@ -54,6 +68,7 @@ public class HomeConverter extends DataConverter {
         } else {
             MultipleItemEntity list = MultipleItemEntity.builder()
                     .setItemType(HomeItemType.HOME_LIST)
+                    .setField(MultipleFields.TAG, false)
                     .setField(MultipleFields.SPAN_SIZE, 1)
                     .setField(HomeItemFields.BEAN, Collections.emptyList())
                     .build();

@@ -1,0 +1,7 @@
+<androidx.appcompat.widget.AppCompatTextView android:id="@+id/item_home_startegy_title"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:text="景点名称"
+    android:textColor="#000000"
+    android:textSize="18sp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

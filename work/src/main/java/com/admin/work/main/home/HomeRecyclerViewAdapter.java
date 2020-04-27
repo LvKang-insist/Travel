@@ -3,6 +3,7 @@ package com.admin.work.main.home;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Build;
+import android.view.View;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -20,6 +21,7 @@ import com.admin.core.ui.view.ViewHelper;
 import com.admin.core.util.callback.IGlobalCallback;
 import com.admin.work.R;
 import com.admin.work.main.home.list.ListDelegate;
+import com.admin.work.main.home.startegy.HomeStrategyDelegate;
 import com.admin.work.web.AgentWebActivity;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bumptech.glide.Glide;
@@ -70,7 +72,6 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                 LinearLayoutCompat layout2 = holder.itemView.findViewById(R.id.item_mingrne_layout);
                 LinearLayoutCompat layout3 = holder.itemView.findViewById(R.id.item_meishi_layout);
                 LinearLayoutCompat layout4 = holder.itemView.findViewById(R.id.item_home_feiyi_layout);
-                Intent line_intent = new Intent(holder.itemView.getContext(), AgentWebActivity.class);
                 layout1.setOnClickListener(v -> {
 
                     int[] image = {R.drawable.lishi_baoding, R.drawable.lishi_cangzhou, R.drawable.lishi_chengde,
@@ -87,21 +88,46 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                     mHomeDelegate.getParentDelegate().getSupportDelegate().start(new ListDelegate(content, image));
                 });
                 layout3.setOnClickListener(v -> {
-                    line_intent.putExtra("link", "https://baijiahao.baidu.com/s?id=1644897734657156190&wfr=spider&for=pc");
-                    holder.itemView.getContext().startActivity(line_intent);
+                    int[] image = {R.drawable.meishi_chengde, R.drawable.meishi_guotie, R.drawable.meishi_huoguoji,
+                            R.drawable.meishi_jingfen, R.drawable.meishi_jingsi, R.drawable.meishi_lvrou,
+                            R.drawable.meishi_qizi, R.drawable.meishi_qinghuagndao, R.drawable.meishi_hexiang,
+                            R.drawable.lishi_zhangjiakou};
+                    String content = parseFile("home_meishi.json");
+                    mHomeDelegate.getParentDelegate().getSupportDelegate().start(new ListDelegate(content, image));
                 });
                 layout4.setOnClickListener(v -> {
-                    line_intent.putExtra("link", "http://www.hebfwzwhyc.cn/");
-                    holder.itemView.getContext().startActivity(line_intent);
+                    int[] image = {R.drawable.feiyi_boyan, R.drawable.feiyi_chengde, R.drawable.feiyi_hebeib,
+                            R.drawable.feiyi_hebeig, R.drawable.feiyi_hebeiheng, R.drawable.feyi_jianzhi,
+                            R.drawable.feiyi_mengcui, R.drawable.feiyi_zhili};
+                    String content = parseFile("home_feiyi.json");
+                    mHomeDelegate.getParentDelegate().getSupportDelegate().start(new ListDelegate(content, image));
                 });
 
                 break;
             case HomeItemType.HOME_LIST:
+                AppCompatImageView image = holder.itemView.findViewById(R.id.item_hoem_list_image);
+                AppCompatTextView time = holder.itemView.findViewById(R.id.item_hoem_list_time);
+                AppCompatTextView detail = holder.itemView.findViewById(R.id.item_hoem_list_detail);
+
+                boolean tag = entity.getField(MultipleFields.TAG);
+                if (tag) {
+                    time.setVisibility(View.GONE);
+                    String text = entity.getField(MultipleFields.TEXT);
+                    int iamgeId = entity.getField(MultipleFields.IMAGE_URL);
+                    String json = null;
+                    if (text.equals("攻略")) {
+                        json = parseFile("home_gonglue.json");
+                    }
+                    detail.setText(text);
+                    Glide.with(mHomeDelegate.getContext())
+                            .load(iamgeId)
+                            .into(image);
+                    String finalJson = json;
+                    holder.itemView.setOnClickListener(v -> mHomeDelegate.getParentDelegate().getSupportDelegate().start(new HomeStrategyDelegate(text, finalJson)));
+                    return;
+                }
                 HomeBean.NewslistBean bean = entity.getField(HomeItemFields.BEAN);
                 if (bean != null) {
-                    AppCompatImageView image = holder.itemView.findViewById(R.id.item_hoem_list_image);
-                    AppCompatTextView time = holder.itemView.findViewById(R.id.item_hoem_list_time);
-                    AppCompatTextView detail = holder.itemView.findViewById(R.id.item_hoem_list_detail);
                     Glide.with(holder.itemView.getContext())
                             .load(bean.getPicUrl())
                             .into(image);
