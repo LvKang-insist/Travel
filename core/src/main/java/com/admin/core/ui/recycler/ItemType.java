@@ -4,8 +4,6 @@ package com.admin.core.ui.recycler;
  * Copyright (C)
  *
  * @file: ItemType
- * @author: 345
- * @Time: 2019/4/27 15:46
  * @description: 数据类型
  */
 public class ItemType {

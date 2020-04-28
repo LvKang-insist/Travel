@@ -7,8 +7,6 @@ import com.admin.core.app.Latte;
  * Copyright (C)
  *
  * @file: StatusBarHeight
- * @author: 345
- * @Time: 2019/4/30 11:39
  * @description: 获取 状态栏的高度 和转换
  */
 public class StatusBarHeight {

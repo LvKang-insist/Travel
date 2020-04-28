@@ -25,8 +25,6 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * Copyright (C)
  * 文件名称: BaseDelegate
- * 创建人: 345
- * 创建时间: 2019/4/15 20:21
  * 描述: Fragment
  */
 public abstract class BaseDelegate extends Fragment implements ISupportFragment {

@@ -7,8 +7,6 @@ import androidx.appcompat.widget.Toolbar;
  * Copyright (C)
  *
  * @file: SetToolBar
- * @author: 345
- * @Time: 2019/5/5 21:23
  * @description: ${DESCRIPTION}
  */
 public class SetToolBar {

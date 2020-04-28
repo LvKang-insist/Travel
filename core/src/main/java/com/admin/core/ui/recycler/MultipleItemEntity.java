@@ -10,8 +10,6 @@ import java.util.LinkedHashMap;
  * Copyright (C)
  *
  * @file:
- * @author: 345
- * @Time: 2019/4/27 14:52
  * @description: 该类相当于一个数据集，RecyclerView 要显示的数据都在这里
  */
 public class MultipleItemEntity implements MultiItemEntity {

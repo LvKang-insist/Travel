@@ -25,9 +25,6 @@ import retrofit2.Callback;
  * Copyright (C)
  *
  * @file: RestClient
- * @author: 345
- * @Time: 2019/4/17 13:14
- * @description: ${DESCRIPTION}
  */
 public class RestClient {
     private final String URL;

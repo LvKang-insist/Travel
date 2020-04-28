@@ -9,8 +9,6 @@ import com.choices.divider.DividerItemDecoration;
  * Copyright (C)
  *
  * @file: BaseDecoration
- * @author: 345
- * @Time: 2019/4/28 19:46
  * @description: RecyclerView 分割线
  */
 public class BaseDecoration extends DividerItemDecoration {

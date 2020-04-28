@@ -17,9 +17,6 @@ import okhttp3.ResponseBody;
  * Copyright (C)
  *
  * @file: SaveFileTask
- * @author: 345
- * @Time: 2019/4/19 16:50
- * @description: ${DESCRIPTION}
  */
 public class SaveFileTask extends AsyncTask<Object, Void, File> {
     private final IReqeust REQUEST;

@@ -2,13 +2,7 @@ package com.admin.work.main.home.list;
 
 import java.util.List;
 
-/**
- * @author 345 QQ:1831712732
- * @name Travel
- * @class name：com.admin.work.main.home.list
- * @time 2020/4/26 20:19
- * @description
- */
+
 public class ListBean {
 
     /**

@@ -22,8 +22,6 @@ import butterknife.OnClick;
  * Copyright (C)
  *
  * @file: LauncherDelegate
- * @author: 345
- * @Time: 2019/4/21 11:45
  * @description: 首页倒计时 效果
  */
 public class LauncherDelegate extends BaseLauncherDelegate implements ITimeListener {

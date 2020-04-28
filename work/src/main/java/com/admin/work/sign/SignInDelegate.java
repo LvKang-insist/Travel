@@ -1,6 +1,5 @@
 package com.admin.work.sign;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -9,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.admin.core.app.Latte;
-import com.admin.core.net.rx.RxRequest;
+import com.admin.core.net.RestCreator;
 import com.admin.core.util.storage.PreferenceUtilsKt;
 import com.admin.work.R;
 import com.elvishew.xlog.XLog;
@@ -24,14 +23,13 @@ import com.tencent.tauth.UiError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Copyright (C)
- *
- * @file: SignInDelegate
- * @author: 345
- * @Time: 2019/4/22 14:34
- * @description: 登录界面
- */
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class SignInDelegate extends AppCompatActivity implements IUiListener {
 
 
@@ -121,20 +119,25 @@ public class SignInDelegate extends AppCompatActivity implements IUiListener {
             object.put("name", nickname);
             object.put("photo", figureurl2);
             object.put("openId", openId);
-            RxRequest.onPostRx(this, "http://192.168.43.80/Travel/account/SignUpAccount.php", object.toString(), new RxRequest.OnRxReqeustListener() {
-                @SuppressLint("ApplySharedPref")
-                @Override
-                public void onNext(boolean flag, String result) {
-                    XLog.e(result);
-                    if (flag) {
-                        PreferenceUtilsKt.putUserName(nickname);
-                        PreferenceUtilsKt.putUserPhoto(figureurl2);
-                        finish();
-                    } else {
-                        ToastUtils.show("网络错误");
-                    }
-                }
-            });
+            RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=urf-8"), object.toString());
+            RestCreator.getRestService()
+                    .postRaw("http://192.168.43.80/Travel/account/SignUpAccount.php", body)
+                    .enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            String result = response.body();
+                            XLog.e(result);
+                            PreferenceUtilsKt.putUserName(nickname);
+                            PreferenceUtilsKt.putUserPhoto(figureurl2);
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                            ToastUtils.show("网络错误");
+                        }
+                    });
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -23,8 +23,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/item_more_list_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_width="90dp"
+                android:scaleType="fitXY"
+                android:layout_height="90dp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -37,7 +38,6 @@
                     android:id="@+id/item_more_list_name"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:text="河北武当山"
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -48,7 +48,6 @@
                     android:layout_height="20dp"
                     android:layout_marginTop="10dp"
                     android:paddingRight="15dp"
-                    android:text="暂无地址"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -59,7 +58,6 @@
                     android:layout_marginTop="@dimen/dp_10"
                     android:maxLines="2"
                     android:paddingRight="15dp"
-                    android:text="无须门票"
                     android:textColor="#000000"
                     android:textSize="13sp" />
 

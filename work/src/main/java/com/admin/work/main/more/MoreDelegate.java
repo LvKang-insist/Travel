@@ -12,7 +12,6 @@ import com.admin.core.deleggate.bottom.BottomItemDelegate;
 import com.admin.work.R;
 import com.admin.work.R2;
 import com.admin.work.main.home.search.SearchDelegate;
-import com.gyf.immersionbar.ImmersionBar;
 
 import butterknife.BindView;
 

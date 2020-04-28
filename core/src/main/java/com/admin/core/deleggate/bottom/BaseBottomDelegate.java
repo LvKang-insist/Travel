@@ -30,8 +30,6 @@ import me.yokeyword.fragmentation.ISupportFragment;
  * Copyright (C)
  *
  * @file: BaseBottomDelegate
- * @author: 345
- * @Time: 2019/4/25 19:24
  * @description: 对所有的键值对进行管理，也就是 碎片和tab，这是一个抽象类。
  */
 public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener {

@@ -12,9 +12,6 @@ import retrofit2.Response;
  * Copyright (C)
  *
  * @file: RequestCallback
- * @author: 345
- * @Time: 2019/4/17 20:56
- * @description: ${DESCRIPTION}
  */
 public class RequestCallback implements Callback<String> {
     private final IReqeust REQUEST;

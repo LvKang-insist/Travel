@@ -10,8 +10,6 @@ import com.bigkoo.convenientbanner.holder.Holder;
  * Copyright (C)
  *
  * @file: HolderCreate
- * @author: 345
- * @Time: 2019/4/27 19:42
  * @description: ${DESCRIPTION}
  */
 public class HolderCreate implements CBViewHolderCreator {

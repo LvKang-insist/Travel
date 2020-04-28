@@ -2,13 +2,7 @@ package com.admin.work.main.more.list;
 
 import java.util.List;
 
-/**
- * @author 345 QQ:1831712732
- * @name Travel
- * @class name：com.admin.work.main.more.list
- * @time 2020/4/27 21:09
- * @description
- */
+
 public class MoreBean {
 
     /**

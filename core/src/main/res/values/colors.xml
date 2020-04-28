@@ -7,7 +7,9 @@
     <!--橘黄色-->
 
 
-    <color name="icon">#03A9F5</color>
+    <color name="icon">#ffffff</color>
+
+    <color name="check">#000000</color>
 
     <!-- 灰色 ，用来设置 btn 的边框刚好-->
 

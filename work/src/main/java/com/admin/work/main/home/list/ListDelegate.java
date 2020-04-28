@@ -14,15 +14,7 @@ import com.admin.work.R;
 import com.google.gson.Gson;
 import com.gyf.immersionbar.ImmersionBar;
 
-import java.util.List;
 
-/**
- * @author 345 QQ:1831712732
- * @name Travel
- * @class name：com.admin.work.main.home
- * @time 2020/4/26 20:00
- * @description
- */
 public class ListDelegate extends LatteDelegate {
 
     private RecyclerView recycler;

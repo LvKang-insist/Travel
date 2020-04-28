@@ -24,8 +24,6 @@ import retrofit2.http.Url;
  * Copyright (C)
  *
  * @file: RestService
- * @author: 345
- * @Time: 2019/4/17 17:40
  * @description: Retrofit 的请求方法
  */
 public interface RestService {

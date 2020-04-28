@@ -6,8 +6,6 @@ import java.util.ArrayList;
  * Copyright (C)
  *
  * @file: DataConverter
- * @author: 345
- * @Time: 2019/4/27 14:51
  * @description: ${DESCRIPTION}
  */
 public abstract class DataConverter {

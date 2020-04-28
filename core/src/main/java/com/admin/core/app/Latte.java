@@ -8,8 +8,6 @@ import java.util.HashMap;
 /**
  * Copyright (C)
  * 文件名称: Latte
- * 创建人: 345
- * 创建时间: 2019/4/14 18:34
  * 描述: 初始化
  */
 public final class Latte {

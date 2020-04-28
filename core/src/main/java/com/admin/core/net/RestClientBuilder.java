@@ -19,8 +19,6 @@ import okhttp3.RequestBody;
  * Copyright (C)
  *
  * @file: RestClientBuilder
- * @author: 345
- * @Time: 2019/4/17 19:48
  * @description: 建造者
  */
 public class RestClientBuilder {

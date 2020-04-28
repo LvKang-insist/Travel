@@ -10,8 +10,6 @@ import me.dm7.barcodescanner.core.ViewFinderView;
  * Copyright (C)
  *
  * @file: LatteViewFinderView
- * @author: 345
- * @Time: 2019/5/13 10:54
  * @description: ${DESCRIPTION}
  */
 public class LatteViewFinderView extends ViewFinderView {

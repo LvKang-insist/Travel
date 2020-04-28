@@ -4,8 +4,6 @@ package com.admin.core.ui.recycler;
  * Copyright (C)
  *
  * @file: MultipleFields
- * @author: 345
- * @Time: 2019/4/27 15:01
  * @description: 解析出来的数据 对应的类型，这里作为键存在
  */
 public enum MultipleFields {

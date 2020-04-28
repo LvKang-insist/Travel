@@ -17,8 +17,6 @@ import java.util.ArrayList;
  * Copyright (C)
  *
  * @file: LauncherScrollDelegate
- * @author: 345
- * @Time: 2019/4/21 15:01
  * @description: 启动时候的轮播图
  */
 public class LauncherScrollDelegate extends BaseLauncherDelegate implements OnItemClickListener {

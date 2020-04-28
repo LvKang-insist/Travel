@@ -118,6 +118,7 @@ public class HomeRecyclerViewAdapter extends MultipleRecyclerAdapter {
                     if ("攻略".equals(text)) {
                         json = parseFile("home_gonglue.json");
                     }
+                    ViewHelper.setViewOutLine(image, 10, ViewHelper.RADIUS_ALL);
                     detail.setText(text);
                     Glide.with(mHomeDelegate.getContext())
                             .load(iamgeId)

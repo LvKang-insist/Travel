@@ -10,9 +10,6 @@ import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.ValueAnimator;
 
-//**
-
-
 public class PageRecyclerView {
 
     RecyclerView mRecyclerView = null;

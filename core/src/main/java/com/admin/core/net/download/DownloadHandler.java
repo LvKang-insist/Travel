@@ -19,9 +19,6 @@ import retrofit2.Response;
  * Copyright (C)
  *
  * @file: DownloadHandler
- * @author: 345
- * @Time: 2019/4/19 16:36
- * @description: ${DESCRIPTION}
  */
 public class DownloadHandler {
 

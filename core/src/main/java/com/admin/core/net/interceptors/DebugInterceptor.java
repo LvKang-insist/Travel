@@ -16,9 +16,6 @@ import okhttp3.ResponseBody;
  * Copyright (C)
  *
  * @file: DebugInterceptor
- * @author: 345
- * @Time: 2019/4/20 14:11
- * @description: ${DESCRIPTION}
  */
 public class DebugInterceptor  extends BaseInterceptor{
     private final String DEBUG_RUL;

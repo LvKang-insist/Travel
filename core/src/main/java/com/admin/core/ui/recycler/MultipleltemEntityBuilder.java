@@ -6,8 +6,6 @@ import java.util.LinkedHashMap;
  * Copyright (C)
  *
  * @file: MultipleltemEntityBuilder
- * @author: 345
- * @Time: 2019/4/27 15:16
  * @description: 构建数据
  */
 public class MultipleltemEntityBuilder {

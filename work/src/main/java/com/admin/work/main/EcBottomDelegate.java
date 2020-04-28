@@ -16,14 +16,7 @@ import com.admin.work.main.service.DiscoverDelegate;
 
 import java.util.LinkedHashMap;
 
-/**
- * Copyright (C)
- *
- * @file: EcBottomDelegate
- * @author: 345
- * @Time: 2019/4/26 14:26
- * @description: ${DESCRIPTION}
- */
+
 @SuppressWarnings("MapOrSetKeyShouldOverrideHashCodeEquals")
 public class EcBottomDelegate extends BaseBottomDelegate {
     @Override
@@ -45,7 +38,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public int setClickedColor() {
-        return getResources().getColor(com.admin.core.R.color.icon, null);
+        return getResources().getColor(com.admin.core.R.color.check, null);
     }
 
     @Override

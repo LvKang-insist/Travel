@@ -6,8 +6,6 @@ import android.net.Uri;
  * Copyright (C)
  *
  * @file: CameraImageBean
- * @author: 345
- * @Time: 2019/5/9 9:56
  * @description: 存储一些中间值
  */
 public final class CameraImageBean {

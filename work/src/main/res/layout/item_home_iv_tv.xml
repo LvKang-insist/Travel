@@ -19,7 +19,7 @@
             android:layout_height="40dp"
             android:padding="5dp"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_mdd_true" />
+            android:src="@drawable/h_lishi" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="40dp"
@@ -46,7 +46,7 @@
             android:padding="5dp"
 
             android:scaleType="fitXY"
-            android:src="@drawable/icon_mdd_true" />
+            android:src="@drawable/h_mingren" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="40dp"
@@ -73,7 +73,7 @@
             android:padding="5dp"
 
             android:scaleType="fitXY"
-            android:src="@drawable/icon_mdd_true" />
+            android:src="@drawable/h_meishi" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="40dp"
@@ -99,13 +99,13 @@
             android:layout_height="40dp"
             android:padding="5dp"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_mdd_true" />
+            android:src="@drawable/h_shuben" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="非遗"
+            android:text="书本"
             android:textSize="14sp"
             tools:ignore="HardcodedText" />
 

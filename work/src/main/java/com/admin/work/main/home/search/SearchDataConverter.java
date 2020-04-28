@@ -20,7 +20,7 @@ public class SearchDataConverter extends DataConverter {
          * Type
          */
         SEARCH_HISTORY,
-        SEARCH_SONG
+        SEARCH
     }
 
     public static final String TAG_SEARCH_HISTORY = "search_history";
@@ -62,7 +62,7 @@ public class SearchDataConverter extends DataConverter {
                     }
                 }
                 return ENTITLES;
-            case SEARCH_SONG:
+            case SEARCH:
                 return parseData(HomeItemType.HOME_NETWORK_SEARCH);
             default:
         }

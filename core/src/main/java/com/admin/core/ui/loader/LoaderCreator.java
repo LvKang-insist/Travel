@@ -11,8 +11,6 @@ import java.util.WeakHashMap;
  * Copyright (C)
  *
  * @file: LoaderCreator
- * @author: 345
- * @Time: 2019/4/18 16:34
  * @description: 以缓存的方式 创建Loader
  */
 public final class LoaderCreator{

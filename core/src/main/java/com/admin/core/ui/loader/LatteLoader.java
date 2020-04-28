@@ -17,8 +17,6 @@ import java.util.ArrayList;
  * Copyright (C)
  *
  * @file: LatteLoader
- * @author: 345
- * @Time: 2019/4/18 16:47
  * @description:
  */
 public class LatteLoader {

@@ -6,8 +6,6 @@ import java.util.WeakHashMap;
  * Copyright (C)
  *
  * @file: CallbackManager
- * @author: 345
- * @Time: 2019/5/9 15:05
  * @description: 全局 接口的管理
  */
 public class CallbackManager {

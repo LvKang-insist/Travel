@@ -15,8 +15,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
  * Copyright (C)
  *
  * @file: ImageHolder
- * @author: 345
- * @Time: 2019/4/27 19:42
  * @description: ${DESCRIPTION}
  */
 public class ImageHolder extends Holder<String> {

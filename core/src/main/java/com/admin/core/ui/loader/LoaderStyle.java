@@ -4,8 +4,6 @@ package com.admin.core.ui.loader;
  * Copyright (C)
  *
  * @file: LoaderStyle
- * @author: 345
- * @Time: 2019/4/18 16:42
  * @description: ${DESCRIPTION}
  */
 @SuppressWarnings("unused")

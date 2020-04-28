@@ -12,6 +12,7 @@ import com.admin.core.deleggate.bottom.BottomItemDelegate;
 import com.admin.core.util.storage.PreferenceUtilsKt;
 import com.admin.work.R;
 import com.admin.work.R2;
+import com.admin.work.main.home.list.ListContentDelegate;
 import com.admin.work.main.my.setting.SettingDelegate;
 import com.admin.work.main.my.suggest.SuggestDelegate;
 import com.admin.work.sign.SignInDelegate;
@@ -49,6 +50,14 @@ public class MyDelegate extends BottomItemDelegate {
 
         rootView.findViewById(R.id.delegate_my_suggest).setOnClickListener(v -> getParentDelegate().getSupportDelegate().start(new SuggestDelegate()));
         rootView.findViewById(R.id.delegate_my_setting).setOnClickListener(v -> getParentDelegate().getSupportDelegate().start(new SettingDelegate()));
+
+        rootView.findViewById(R.id.delegate_my_guanyu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = "助您旅游的 app ";
+                getParentDelegate().getSupportDelegate().start(new ListContentDelegate("关于我们", str));
+            }
+        });
     }
 
 

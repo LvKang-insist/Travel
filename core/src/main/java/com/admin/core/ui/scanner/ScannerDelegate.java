@@ -14,8 +14,6 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
  * Copyright (C)
  *
  * @file: ScannerDelegate
- * @author: 345
- * @Time: 2019/5/13 10:48
  * @description: ${DESCRIPTION}
  */
 public class ScannerDelegate  extends LatteDelegate implements ZBarScannerView.ResultHandler {

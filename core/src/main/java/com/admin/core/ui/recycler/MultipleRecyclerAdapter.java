@@ -22,8 +22,6 @@ import java.util.List;
  * Copyright (C)
  *
  * @file: MultipleRecyclerAdapter
- * @author: 345
- * @Time: 2019/4/27 17:34
  * @description: RecyclerView 的多类型适配器
  */
 

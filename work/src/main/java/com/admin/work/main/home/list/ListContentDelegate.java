@@ -10,19 +10,13 @@ import com.admin.core.deleggate.LatteDelegate;
 import com.admin.work.R;
 import com.gyf.immersionbar.ImmersionBar;
 
-/**
- * @author 345 QQ:1831712732
- * @name Travel
- * @class name：com.admin.work.main.home.list
- * @time 2020/4/26 21:41
- * @description
- */
+
 public class ListContentDelegate extends LatteDelegate {
 
     private String title;
     private String content;
 
-    ListContentDelegate(String title, String content) {
+    public  ListContentDelegate(String title, String content) {
         this.title = title;
         this.content = content;
     }

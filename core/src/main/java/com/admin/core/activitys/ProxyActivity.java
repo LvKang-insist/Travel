@@ -2,7 +2,6 @@ package com.admin.core.activitys;
 
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,8 +10,6 @@ import androidx.appcompat.widget.ContentFrameLayout;
 
 import com.admin.core.R;
 import com.admin.core.deleggate.LatteDelegate;
-import com.admin.core.util.callback.CallbackManager;
-import com.hjq.toast.ToastUtils;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
@@ -20,13 +17,7 @@ import me.yokeyword.fragmentation.SupportActivityDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 
-/**
- * Copyright (C)
- * 文件名称: ProxyActivity
- * 创建人: 345
- * 创建时间: 2019/4/15 20:18
- * 描述:
- */
+
 public abstract class ProxyActivity extends AppCompatActivity implements ISupportActivity {
 
     public final SupportActivityDelegate DELEGATE = new SupportActivityDelegate(this);

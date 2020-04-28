@@ -3,10 +3,7 @@ package com.admin.core.app;
 /**
  * Copyright (C)
  * 文件名称: ConfigType
- * 创建人: 345
- * 创建时间: 2019/4/14 18:39
  * 描述: 在整个应用程序中 是一个单例，并且只能被初始化一次。
- * @author Lv
  */
 public enum ConfigType {
     /**

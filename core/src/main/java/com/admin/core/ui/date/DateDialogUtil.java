@@ -15,8 +15,6 @@ import java.util.Locale;
  * Copyright (C)
  *
  * @file: DateDialogUtil
- * @author: 345
- * @Time: 2019/5/8 21:40
  * @description: 日期选择器
  */
 public class DateDialogUtil {

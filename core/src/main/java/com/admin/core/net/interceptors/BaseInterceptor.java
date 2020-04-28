@@ -11,9 +11,6 @@ import okhttp3.Request;
  * Copyright (C)
  *
  * @file: BaseInterceptor
- * @author: 345
- * @Time: 2019/4/20 13:58
- * @description: ${DESCRIPTION}
  */
 public abstract class BaseInterceptor implements Interceptor {
 

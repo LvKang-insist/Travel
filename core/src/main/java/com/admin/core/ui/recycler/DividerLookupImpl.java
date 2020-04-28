@@ -7,8 +7,6 @@ import com.choices.divider.DividerItemDecoration;
  * Copyright (C)
  *
  * @file: DividerLookupImpl
- * @author: 345
- * @Time: 2019/4/28 19:48
  * @description: 处理横向或者竖向
  */
 public class DividerLookupImpl implements DividerItemDecoration.DividerLookup {

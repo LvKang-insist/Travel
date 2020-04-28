@@ -10,8 +10,6 @@ import com.admin.core.deleggate.LatteDelegate;
  * Copyright (C)
  *
  * @file: BottomItemDelegate
- * @author: 345
- * @Time: 2019/4/25 19:26
  * @description: 导航栏对应的 页面
  */
 public abstract class BottomItemDelegate extends LatteDelegate {

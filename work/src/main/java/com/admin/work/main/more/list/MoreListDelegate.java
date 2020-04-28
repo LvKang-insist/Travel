@@ -14,21 +14,17 @@ import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.List;
 
-/**
- * @author 345 QQ:1831712732
- * @name Travel
- * @class name：com.admin.work.main.more.list
- * @time 2020/4/27 21:23
- * @description
- */
+
 public class MoreListDelegate extends LatteDelegate {
     List<MoreBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list;
     String title;
     private RecyclerView recycler;
+    List<Integer> imageList;
 
-    public MoreListDelegate(List<MoreBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list, String title) {
+    public MoreListDelegate(List<MoreBean.ShowapiResBodyBean.PagebeanBean.ContentlistBean> list, List<Integer> imageList, String title) {
         this.list = list;
         this.title = title;
+        this.imageList = imageList;
     }
 
     @Override
@@ -59,7 +55,7 @@ public class MoreListDelegate extends LatteDelegate {
     private void initRecycler() {
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         MoreListConverter converter = new MoreListConverter();
-        MoreListAdpater adpater = new MoreListAdpater(converter.convert(list), this);
+        MoreListAdpater adpater = new MoreListAdpater(converter.convert(list,imageList), this);
 
         recycler.setAdapter(adpater);
     }

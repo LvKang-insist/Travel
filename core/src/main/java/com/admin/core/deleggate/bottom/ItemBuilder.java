@@ -6,8 +6,6 @@ import java.util.LinkedHashMap;
  * Copyright (C)
  *
  * @file: ItemBuilder
- * @author: 345
- * @Time: 2019/4/25 19:42
  * @description: 工厂类，用来构建 导航栏 和 碎片
  */
 public final class ItemBuilder {

@@ -7,8 +7,6 @@ import java.util.TimerTask;
  * Copyright (C)
  *
  * @file: BaseTimeTask
- * @author: 345
- * @Time: 2019/4/21 11:46
  * @description: ${DESCRIPTION}
  */
 public class BaseTimeTask extends TimerTask {

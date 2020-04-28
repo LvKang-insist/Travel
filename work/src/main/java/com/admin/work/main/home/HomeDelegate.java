@@ -1,17 +1,23 @@
 package com.admin.work.main.home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.admin.core.deleggate.bottom.BottomItemDelegate;
-import com.admin.core.net.rx.RxRequest;
+import com.admin.core.net.RestCreator;
+import com.admin.core.ui.loader.LatteLoader;
 import com.admin.work.R;
 import com.admin.work.R2;
+import com.google.gson.Gson;
+import com.hjq.toast.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -19,15 +25,11 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.WeakHashMap;
 
 import butterknife.BindView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-/**
- * Copyright (C)
- *
- * @file:
- * @author: 345
- * @Time: 2019/4/26 14:28
- * @description: 主页面
- */
+
 @SuppressWarnings("AlibabaAvoidCommentBehindStatement")
 public class HomeDelegate extends BottomItemDelegate {
 
@@ -38,7 +40,13 @@ public class HomeDelegate extends BottomItemDelegate {
     private HomeRecyclerViewAdapter adapter;
 
     @BindView(R2.id.refresh_layout)
-     SmartRefreshLayout mRefresh;
+    SmartRefreshLayout mRefresh;
+
+    @BindView(R2.id.delegate_home_weather)
+    AppCompatTextView mWeather;
+
+    @BindView(R2.id.delegate_home_weather_image)
+    AppCompatImageView mWeatherImage;
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
@@ -46,14 +54,51 @@ public class HomeDelegate extends BottomItemDelegate {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         HomeConverter homeConverter = new HomeConverter();
 
+        LatteLoader.showLoading(getContext());
         request(homeConverter);
-
+        initWeather();
         mRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                     request(homeConverter);
+                request(homeConverter);
             }
         });
+
+
+    }
+
+    private void initWeather() {
+        WeakHashMap<String, Object> data = new WeakHashMap<>();
+        data.put("key", "352c26a1c8e3ad2dd5169c6571f9404f");
+        data.put("city", "石家庄");
+        RestCreator.getRestService()
+                .get("http://apis.juhe.cn/simpleWeather/query?", data)
+                .enqueue(new Callback<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String result = response.body();
+                        WeatcherBean bean = new Gson().fromJson(result, WeatcherBean.class);
+                        if (bean.getResult() != null) {
+                            WeatcherBean.ResultBean.RealtimeBean realtime = bean.getResult().getRealtime();
+                            mWeather.setText(realtime.getDirect() + "/" + realtime.getTemperature() + "℃");
+                            if (realtime.getInfo().contains("晴")) {
+                                mWeatherImage.setImageResource(R.drawable.ic_weather_1);
+                            } else if (realtime.getInfo().contains("云")) {
+                                mWeatherImage.setImageResource(R.drawable.ic_weather_2);
+                            } else if (realtime.getInfo().contains("雨")) {
+                                mWeatherImage.setImageResource(R.drawable.ic_weather_3);
+                            }
+                        }
+                        LatteLoader.stopLoading();
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        ToastUtils.show("网络错误");
+                        LatteLoader.stopLoading();
+                    }
+                });
     }
 
     private void request(HomeConverter homeConverter) {
@@ -61,14 +106,25 @@ public class HomeDelegate extends BottomItemDelegate {
         map.put("key", "75b91370009876ca424a865e0007d935");
         map.put("num", 15);
         map.put("word", "河北");
-        RxRequest.onGetRx(getContext(), "http://api.tianapi.com/travel/index", map, (flag, result) -> {
-            if (flag) {
-                homeConverter.setJsonData(result);
-            }
-            adapter = new HomeRecyclerViewAdapter(homeConverter.convert(), this);
-            mRecyclerView.setAdapter(adapter);
-            mRefresh.finishRefresh(true);
-        });
+        RestCreator.getRestService()
+                .get("http://api.tianapi.com/travel/index", map)
+                .enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String result = response.body();
+                        homeConverter.setJsonData(result);
+                        adapter = new HomeRecyclerViewAdapter(homeConverter.convert(), HomeDelegate.this);
+                        mRecyclerView.setAdapter(adapter);
+                        mRefresh.finishRefresh(true);
+                        LatteLoader.stopLoading();
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        ToastUtils.show("网络错误");
+                        LatteLoader.stopLoading();
+                    }
+                });
     }
 
     @Override

@@ -3,14 +3,11 @@ package com.admin.core.app;
 
 import com.blankj.utilcode.util.Utils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Copyright (C)
  * 文件名称: Configurator
- * 创建人: 345
- * 创建时间: 2019/4/14 18:37
  * 描述:  Configurator : 配置程序
  */
 public class Configurator {

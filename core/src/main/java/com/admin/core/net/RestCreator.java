@@ -1,20 +1,9 @@
 package com.admin.core.net;
-import android.util.Log;
-
 import com.admin.core.app.ConfigType;
 import com.admin.core.app.Latte;
-import com.admin.core.net.rx.RxRestService;
-import com.admin.core.util.value.Resource;
 
-import java.util.ArrayList;
 import java.util.WeakHashMap;
-import java.util.concurrent.TimeUnit;
 
-
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -23,8 +12,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * Copyright (C)
  *
  * @file: RestCreator
- * @author: 345
- * @Time: 2019/4/17 19:19
  * @description: Creator：创造者
  */
 public class RestCreator {
@@ -69,16 +56,4 @@ public class RestCreator {
         return RestServiceHolder.REST_SERVICE;
     }
 
-    /**
-     * RxService 接口
-     */
-    private static final class RxRestServiceHolder {
-        //创建 网络请求接口 的实例
-        private static final RxRestService REST_SERVICE =
-                RetrofitHolder.RETROFIT_CLIENT.create(RxRestService.class);
-    }
-
-    public static RxRestService getRxRestService() {
-        return RxRestServiceHolder.REST_SERVICE;
-    }
 }

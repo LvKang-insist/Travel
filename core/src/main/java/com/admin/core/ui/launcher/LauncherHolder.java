@@ -15,8 +15,6 @@ import com.bigkoo.convenientbanner.holder.Holder;
  * Copyright (C)
  *
  * @file: LauncherHolder
- * @author: 345
- * @Time: 2019/4/21 15:15
  * @description: ${DESCRIPTION}
  */
 public class LauncherHolder extends Holder<Integer> {

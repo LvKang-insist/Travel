@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.admin.core.app.Latte;
-import com.admin.core.net.rx.RxRequest;
+import com.admin.core.net.RestCreator;
 import com.admin.core.ui.recycler.MultipleFields;
 import com.admin.core.ui.recycler.MultipleItemEntity;
 import com.admin.core.ui.recycler.MultipleRecyclerAdapter;
@@ -17,12 +17,15 @@ import com.admin.work.main.home.HomeItemFields;
 import com.admin.work.main.home.HomeItemType;
 import com.admin.work.web.AgentWebActivity;
 import com.bumptech.glide.Glide;
-import com.elvishew.xlog.XLog;
+import com.hjq.toast.ToastUtils;
 
 import java.util.List;
 import java.util.WeakHashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SearchAdapter extends MultipleRecyclerAdapter {
     private SearchDelegate delegate;
@@ -74,13 +77,21 @@ public class SearchAdapter extends MultipleRecyclerAdapter {
         map.put("num", 15);
         map.put("word", text);
         delegate.saveItem(text);
-        RxRequest.onGetRx(delegate.getContext(), "http://api.tianapi.com/travel/index", map, (flag, result) -> {
-            if (flag) {
-                XLog.json(result);
-                SearchDataConverter converter = new SearchDataConverter();
-                converter.setJsonData(result);
-                setNewData(converter.convert(SearchDataConverter.MODE.SEARCH_SONG));
-            }
-        });
+
+        RestCreator.getRestService().get("http://api.tianapi.com/travel/index",map)
+                .enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String result = response.body();
+                        SearchDataConverter converter = new SearchDataConverter();
+                        converter.setJsonData(result);
+                        setNewData(converter.convert(SearchDataConverter.MODE.SEARCH));
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        ToastUtils.show("网络错误");
+                    }
+                });
     }
 }

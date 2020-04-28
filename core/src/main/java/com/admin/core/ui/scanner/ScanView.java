@@ -10,8 +10,6 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
  * Copyright (C)
  *
  * @file: ScanView
- * @author: 345
- * @Time: 2019/5/13 10:52
  * @description: ${DESCRIPTION}
  */
 public class ScanView extends ZBarScannerView {

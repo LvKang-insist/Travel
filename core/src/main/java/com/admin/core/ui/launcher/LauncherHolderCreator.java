@@ -11,8 +11,6 @@ import com.bigkoo.convenientbanner.holder.Holder;
  * Copyright (C)
  *
  * @file: LauncherHolderCreator
- * @author: 345
- * @Time: 2019/4/21 15:15
  * @description: ${DESCRIPTION}
  */
 public class LauncherHolderCreator implements CBViewHolderCreator {

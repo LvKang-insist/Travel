@@ -9,8 +9,6 @@ import com.admin.core.app.Latte;
  * Copyright (C)
  *
  * @file: DimenUtil
- * @author: 345
- * @Time: 2019/4/18 16:57
  * @description: 测量
  */
 public class DimenUtil {

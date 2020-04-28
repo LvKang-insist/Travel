@@ -3,12 +3,8 @@ package com.admin.work.main.my.setting;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-
-import com.admin.core.app.AccountManager;
-import com.admin.core.app.IUserChecker;
 
 import com.admin.core.util.storage.PreferenceUtilsKt;
 import com.admin.work.main.my.list.ListBean;
@@ -37,20 +33,9 @@ public class SettingOnclickListener extends SimpleClickListener {
                 builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        AccountManager.checkAccount(new IUserChecker() {
-                            @Override
-                            public void onSignIn(String SignState, String SignNumber) {
-
-                            }
-
-                            @Override
-                            public void onNoSignIn() {
-                                ToastUtils.show("退出登录成功");
-                                PreferenceUtilsKt.putUserPhoto(null);
-                                PreferenceUtilsKt.putUserName(null);
-                            }
-                        });
-
+                        ToastUtils.show("退出登录成功");
+                        PreferenceUtilsKt.putUserPhoto(null);
+                        PreferenceUtilsKt.putUserName(null);
                     }
                 });
                 builder.show();

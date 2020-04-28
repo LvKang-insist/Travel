@@ -34,8 +34,6 @@ import java.util.Date;
  * Copyright (C)
  *
  * @file: FileUtil
- * @author: 345
- * @Time: 2019/4/19 17:12
  * @description: ${DESCRIPTION}
  */
 public class FileUtil {
