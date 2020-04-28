@@ -3,18 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+
+    <RelativeLayout
         android:id="@+id/setting_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
-        android:gravity="center"
-        android:text="设置"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        tools:ignore="HardcodedText" />
+        android:layout_height="60dp"
+        android:paddingTop="20dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/delegate_home_list_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:padding="10dp"
+            android:src="@drawable/ic_back" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/delegate_hoem_list_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="设置"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_settings"

@@ -45,7 +45,7 @@ public class LattePreference {
     }
 
     public static String getAppData(String key) {
-        return getAppPreference(USER).getString(key, null);
+        return getAppPreference(USER).getString(key, "");
     }
 
 

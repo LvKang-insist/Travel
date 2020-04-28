@@ -1,35 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/launch_jilaizhi"
-   >
+    android:background="#ffffff"
+    android:orientation="vertical">
 
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/action_close"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/icon_close"
-        android:layout_marginStart="16dp" />
+        android:src="@drawable/icon_close" />
 
 
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/action_login"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="130dp"
-        android:background="@drawable/my_btn_shap"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
         android:gravity="center"
-        android:text="QQ 快捷登录"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/delegate_sign_in_number"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:hint="请输入账号"
+                android:inputType="number"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/delegate_sign_in_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <CheckBox
+                    android:id="@+id/delegate_sign_in_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="记住密码"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    tools:ignore="HardcodedText" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/delegate_sign_in_youke"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="游客登录"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/delegate_sign_up_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#b8d200"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/delegate_sign_in_wangji"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="忘记密码"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/delegate_sign_in_up"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text="新用户注册"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
 </FrameLayout>

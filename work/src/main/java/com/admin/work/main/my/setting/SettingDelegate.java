@@ -40,6 +40,13 @@ public class SettingDelegate extends LatteDelegate {
                 .statusBarDarkFont(true)
                 .titleBar(rootView.findViewById(R.id.setting_toolbar))
                 .init();
+
+        rootView.findViewById(R.id.delegate_home_list_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportDelegate().pop();
+            }
+        });
     }
 
     @Override
@@ -49,13 +56,22 @@ public class SettingDelegate extends LatteDelegate {
     }
 
     private void setting() {
+
+        ListBean forget = new ListBean.Builder()
+                .setmItemType(ListItemType.PER_ITEM)
+                .setmId(5)
+                .setmText("修改密码")
+                .build();
+
         ListBean about = new ListBean.Builder()
                 .setmItemType(ListItemType.PER_ITEM)
                 .setmId(4)
                 .setmText("退出登录")
                 .build();
 
+
         List<ListBean> list = new ArrayList<>();
+        list.add(forget);
         list.add(about);
 
         adapter = new ListAdapter(list);

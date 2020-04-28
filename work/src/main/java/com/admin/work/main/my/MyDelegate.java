@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.admin.core.deleggate.bottom.BottomItemDelegate;
+import com.admin.core.util.storage.LattePreference;
 import com.admin.core.util.storage.PreferenceUtilsKt;
 import com.admin.work.R;
 import com.admin.work.R2;
@@ -17,6 +18,7 @@ import com.admin.work.main.my.setting.SettingDelegate;
 import com.admin.work.main.my.suggest.SuggestDelegate;
 import com.admin.work.sign.SignInDelegate;
 import com.bumptech.glide.Glide;
+import com.hjq.toast.ToastUtils;
 
 import butterknife.BindView;
 
@@ -69,19 +71,17 @@ public class MyDelegate extends BottomItemDelegate {
 
     public void startLogin() {
         if (isLogin()) {
+            ToastUtils.show("已登录");
             return;
         }
-        getContext().startActivity(new Intent(getContext(), SignInDelegate.class));
+        getParentDelegate().getSupportDelegate().start(new SignInDelegate());
     }
 
 
     boolean isLogin() {
-        String photo = PreferenceUtilsKt.getUserPhoto();
-        String name = PreferenceUtilsKt.getUserName();
-        if (photo != null && name != null) {
-            Glide.with(getContext())
-                    .load(photo)
-                    .into(mAvatarImage);
+        boolean is = LattePreference.getAppFlag("isSign");
+        if (is) {
+            String name = LattePreference.getAppData("name");
             mTextName.setText(name);
             return true;
         } else {

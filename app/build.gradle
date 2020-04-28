@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         relase {
-            storeFile file('F:\\Android\\Project\\ImitateQQMusic\\app\\key.jks')
+            storeFile file('key.jks')
             storePassword '123456789'
             keyAlias = 'key0'
             keyPassword '123456789'

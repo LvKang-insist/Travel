@@ -6,8 +6,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.admin.core.util.storage.LattePreference;
 import com.admin.core.util.storage.PreferenceUtilsKt;
 import com.admin.work.main.my.list.ListBean;
+import com.admin.work.sign.ForGetDelegate;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.hjq.toast.ToastUtils;
@@ -34,11 +36,13 @@ public class SettingOnclickListener extends SimpleClickListener {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ToastUtils.show("退出登录成功");
-                        PreferenceUtilsKt.putUserPhoto(null);
-                        PreferenceUtilsKt.putUserName(null);
+                        LattePreference.setAppFlag("isSign", false);
                     }
                 });
                 builder.show();
+                break;
+            case 5:
+                delegate.getSupportDelegate().start(new ForGetDelegate());
                 break;
             default:
         }
