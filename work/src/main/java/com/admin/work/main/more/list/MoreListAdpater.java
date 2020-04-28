@@ -71,12 +71,12 @@ public class MoreListAdpater extends MultipleRecyclerAdapter {
             content.setVisibility(View.GONE);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGaoDeMap(data.getLocation().getLat(), data.getLocation().getLon(), data.getName());
             }
-        });
+        });*/
     }
 
     /**
