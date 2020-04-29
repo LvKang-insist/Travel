@@ -1,35 +1,23 @@
 package com.admin.work.sign;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.admin.core.app.Latte;
 import com.admin.core.deleggate.LatteDelegate;
 import com.admin.core.net.RestCreator;
+import com.admin.core.ui.loader.LatteLoader;
 import com.admin.core.util.storage.LattePreference;
-import com.admin.core.util.storage.PreferenceUtilsKt;
 import com.admin.work.R;
-import com.elvishew.xlog.XLog;
 import com.hjq.toast.ToastUtils;
-import com.tencent.connect.UserInfo;
-import com.tencent.connect.auth.QQToken;
-import com.tencent.connect.common.Constants;
-import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -96,6 +84,7 @@ public class SignInDelegate extends LatteDelegate {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String name = num.getText().toString();
                 String password = pass.getText().toString();
                 if (name.isEmpty()) {
@@ -139,6 +128,7 @@ public class SignInDelegate extends LatteDelegate {
     private void login(String num, String password) {
         JSONObject object = new JSONObject();
         try {
+            LatteLoader.showLoading(getContext());
             object.put("name", num);
             object.put("password", password);
             RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=urf-8"), object.toString());
@@ -147,6 +137,7 @@ public class SignInDelegate extends LatteDelegate {
                     .enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
+                            LatteLoader.stopLoading();
                             String result = response.body();
                             try {
                                 JSONObject json = new JSONObject(result);
@@ -166,6 +157,7 @@ public class SignInDelegate extends LatteDelegate {
 
                         @Override
                         public void onFailure(Call<String> call, Throwable t) {
+                            LatteLoader.stopLoading();
                             ToastUtils.show("网络错误");
                         }
                     });
