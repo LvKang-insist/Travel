@@ -1,7 +1,11 @@
 package com.admin.work.launcher;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -11,6 +15,9 @@ import com.admin.core.util.time.ITimeListener;
 import com.admin.work.R;
 import com.admin.work.R2;
 import com.admin.work.main.EcBottomDelegate;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.text.MessageFormat;
 import java.util.Timer;
@@ -60,6 +67,19 @@ public class LauncherDelegate extends BaseLauncherDelegate implements ITimeListe
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        RelativeLayout viewById = rootView.findViewById(R.id.delegate_launcher);
+
+        Glide.with(getContext())
+                .asBitmap()
+                .load(R.drawable.launch_jilaizhi)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+                        Drawable drawable = new BitmapDrawable(resource);
+                        viewById.setBackground(drawable);
+                    }
+
+                });
         initTimer();
     }
 

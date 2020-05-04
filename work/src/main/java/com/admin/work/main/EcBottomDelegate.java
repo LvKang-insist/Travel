@@ -1,5 +1,6 @@
 package com.admin.work.main;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.widget.LinearLayout;
 
@@ -38,7 +39,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public int setClickedColor() {
-        return getResources().getColor(com.admin.core.R.color.check, null);
+        return Color.parseColor("#000000");
     }
 
     @Override

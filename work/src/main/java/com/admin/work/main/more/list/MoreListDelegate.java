@@ -27,6 +27,8 @@ public class MoreListDelegate extends LatteDelegate {
         this.imageList = imageList;
     }
 
+    public MoreListDelegate() { }
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_more_lsit;
@@ -55,7 +57,7 @@ public class MoreListDelegate extends LatteDelegate {
     private void initRecycler() {
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         MoreListConverter converter = new MoreListConverter();
-        MoreListAdpater adpater = new MoreListAdpater(converter.convert(list,imageList), this);
+        MoreListAdpater adpater = new MoreListAdpater(converter.convert(list, imageList), this);
 
         recycler.setAdapter(adpater);
     }

@@ -35,7 +35,7 @@ public class MoreRecyclerAdapter extends MultipleRecyclerAdapter {
             R.drawable.m_13, R.drawable.m_14, R.drawable.m_15, R.drawable.m_16};
     List<Integer> imageList = new ArrayList<>();
 
-    protected MoreRecyclerAdapter(List<MultipleItemEntity> data, LatteDelegate delegate) {
+    public MoreRecyclerAdapter(List<MultipleItemEntity> data, LatteDelegate delegate) {
         super(data);
         this.mDelegate = delegate;
         addItemType(MoreItemType.MORE_TYPE_ONE, R.layout.item_more_type_one);
@@ -44,6 +44,7 @@ public class MoreRecyclerAdapter extends MultipleRecyclerAdapter {
         MoreBean moreBean = new Gson().fromJson(content, MoreBean.class);
         contentlist = moreBean.getShowapi_res_body().getPagebean().getContentlist();
     }
+
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
