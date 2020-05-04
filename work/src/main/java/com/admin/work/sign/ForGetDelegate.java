@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.admin.core.deleggate.LatteDelegate;
 import com.admin.core.net.RestCreator;
+import com.admin.core.ui.loader.LatteLoader;
 import com.admin.work.R;
 import com.hjq.toast.ToastUtils;
 
@@ -66,6 +67,7 @@ public class ForGetDelegate extends LatteDelegate {
 
                 JSONObject object = new JSONObject();
                 try {
+                    LatteLoader.showLoading(getContext());
                     object.put("name", num);
                     object.put("password", pass);
                     object.put("encrypted", mb);
@@ -76,6 +78,7 @@ public class ForGetDelegate extends LatteDelegate {
                             .enqueue(new Callback<String>() {
                                 @Override
                                 public void onResponse(Call<String> call, Response<String> response) {
+                                    LatteLoader.stopLoading();
                                     String result = response.body();
                                     try {
                                         JSONObject json = new JSONObject(result);
@@ -93,6 +96,7 @@ public class ForGetDelegate extends LatteDelegate {
 
                                 @Override
                                 public void onFailure(Call<String> call, Throwable t) {
+                                    LatteLoader.stopLoading();
                                     ToastUtils.show("网络错误");
                                 }
                             });

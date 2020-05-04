@@ -2,19 +2,15 @@ package com.admin.work.sign;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import com.admin.core.deleggate.LatteDelegate;
-import com.admin.core.net.RestClient;
 import com.admin.core.net.RestCreator;
-import com.admin.core.util.storage.LattePreference;
+import com.admin.core.ui.loader.LatteLoader;
 import com.admin.work.R;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONPObject;
 import com.hjq.toast.ToastUtils;
 
 import org.json.JSONException;
@@ -78,7 +74,7 @@ public class SignUpDelegate extends LatteDelegate {
                 if (mb.isEmpty()) {
                     ToastUtils.show("密保不能为空");
                 }
-
+                LatteLoader.showLoading(getContext());
                 JSONObject object = new JSONObject();
                 try {
                     object.put("name", num);
@@ -91,6 +87,7 @@ public class SignUpDelegate extends LatteDelegate {
                             .enqueue(new Callback<String>() {
                                 @Override
                                 public void onResponse(Call<String> call, Response<String> response) {
+                                    LatteLoader.stopLoading();
                                     String result = response.body();
                                     try {
                                         JSONObject json = new JSONObject(result);
@@ -107,6 +104,7 @@ public class SignUpDelegate extends LatteDelegate {
                                 }
                                 @Override
                                 public void onFailure(Call<String> call, Throwable t) {
+                                    LatteLoader.stopLoading();
                                     ToastUtils.show("网络错误");
                                 }
                             });

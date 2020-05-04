@@ -3,16 +3,15 @@ package com.admin.frame;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
 import com.admin.core.app.Latte;
-
 import com.elvishew.xlog.LogConfiguration;
 import com.elvishew.xlog.XLog;
 import com.facebook.stetho.Stetho;
 import com.hjq.toast.ToastUtils;
+import com.tencent.bugly.crashreport.CrashReport;
 
 
 public class ExampleApp extends Application {
@@ -35,7 +34,7 @@ public class ExampleApp extends Application {
         //log 和 Tost 工具
         XLog.init(new LogConfiguration.Builder().t().tag("345").build());
         ToastUtils.init(this);
-
+        CrashReport.initCrashReport(getApplicationContext(), "fcc4199459", false);
         initStetho();
     }
 
