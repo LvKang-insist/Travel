@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -8,6 +9,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //Room 数据库生成的文件保存在哪个位置上面：当前 module 下 schemas文件中
+        javaCompileOptions{
+            annotationProcessorOptions{
+                arguments=["room.schemaLocation":"$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -154,6 +162,10 @@ dependencies {
     //ViewPager 指示器，替代 TabLayout
     api 'com.github.hackware1993:MagicIndicator:1.6.0'
 
-//    api 'com.github.LvKang-insist:LvHttp:1.1.0'
+
+    //数据库组件
+    implementation "android.arch.persistence.room:runtime:2.2.3"
+    implementation "androidx.room:room-ktx:2.2.5"
+    kapt "android.arch.persistence.room:compiler:2.2.3"
 
 }

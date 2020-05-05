@@ -18,6 +18,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import com.admin.core.R;
 import com.admin.core.R2;
 import com.admin.core.deleggate.LatteDelegate;
+import com.elvishew.xlog.XLog;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -61,11 +62,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
      */
     private int mClickedColor = Color.RED;
 
-    /**
-     * 底部 tab
-     */
-    @BindView(R2.id.bottom_bar)
-    LinearLayoutCompat mBottomBar = null;
+    LinearLayoutCompat mBottomBar;
     /**
      * Bottom 的标志
      */
@@ -128,11 +125,13 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
+        mBottomBar = rootView.findViewById(R.id.bottom_bar);
         final int size = ITEMS.size();
         for (int i = 0; i < size; i++) {
             //第一个参数 布局，第二个参数 为给第一个参数加载的布局 设置一个父布局
             LayoutInflater.from(getContext()).inflate(R.layout.bottom_item_icon_text_layout, mBottomBar);
             //返回指定的视图
+            XLog.e(mBottomBar.toString());
             final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
             //设置每个 item的点击事件 和标记
             item.setTag(i);

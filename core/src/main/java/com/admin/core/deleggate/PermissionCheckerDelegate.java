@@ -64,7 +64,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     }
 
     public void startCameraWithCheck() {
-        PermissionCheckerDelegatePermissionsDispatcher.startCameraWithPermissionCheck(this);
+
     }
 
     /**
@@ -77,7 +77,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     }
 
     public void startScanWithCheck(LatteDelegate delegate) {
-        PermissionCheckerDelegatePermissionsDispatcher.startScanWithPermissionCheck(this, delegate);
+//        PermissionCheckerDelegatePermissionsDispatcher.startScanWithPermissionCheck(this, delegate);
     }
 
     @NeedsPermission({
@@ -90,7 +90,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         }
     }
     public void startScanMusicCheck(){
-        PermissionCheckerDelegatePermissionsDispatcher.startscanMusicWithPermissionCheck(this);
+//        PermissionCheckerDelegatePermissionsDispatcher.startscanMusicWithPermissionCheck(this);
     }
 
     /**
@@ -143,8 +143,8 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] data) {
         super.onRequestPermissionsResult(requestCode, permissions, data);
-        PermissionCheckerDelegatePermissionsDispatcher
-                .onRequestPermissionsResult(this, requestCode, data);
+//        PermissionCheckerDelegatePermissionsDispatcher
+//                .onRequestPermissionsResult(this, requestCode, data);
     }
 
     @Override

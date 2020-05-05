@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.admin.core.cache.CacheManagerKt;
 import com.admin.core.deleggate.bottom.BottomItemDelegate;
 import com.admin.core.net.RestCreator;
 import com.admin.core.ui.loader.LatteLoader;
@@ -64,6 +64,23 @@ public class HomeDelegate extends BottomItemDelegate {
             }
         });
 
+
+        rootView.findViewById(R.id.delegate_home_city).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CacheManagerKt.save("Jun", new Test());
+            }
+        });
+
+        rootView.findViewById(R.id.delegate_home_weather_image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Test jun = (Test) CacheManagerKt.getCache("Jun");
+                if (jun != null) {
+                    ToastUtils.show(jun.name + "---" + jun.age);
+                }
+            }
+        });
 
     }
 

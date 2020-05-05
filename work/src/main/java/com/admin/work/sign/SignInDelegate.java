@@ -16,7 +16,6 @@ import com.admin.core.ui.loader.LatteLoader;
 import com.admin.core.util.storage.LattePreference;
 import com.admin.work.R;
 import com.hjq.toast.ToastUtils;
-import com.tencent.tauth.Tencent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +30,6 @@ import retrofit2.Response;
 public class SignInDelegate extends LatteDelegate {
 
 
-    private Tencent tencent;
     private AppCompatTextView startUp;
     private AppCompatEditText num;
     private AppCompatEditText pass;
